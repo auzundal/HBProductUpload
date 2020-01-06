@@ -1,6 +1,5 @@
 package lima.steps;
 
-import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -8,25 +7,24 @@ import cucumber.api.java.en.When;
 import lima.page.HomePage;
 import lima.page.LoginPage;
 import lima.util.DriverUtil;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.junit.Assert;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class LoginStep {
 
 
     private LoginPage loginPage;
     private HomePage homePage;
-    private WebDriver driver;
+//    private WebDriver driver;
 
 
     @Before
     public void setup() {
-        driver = DriverUtil.getDriver();
-        loginPage = new LoginPage(driver);
-        homePage = new HomePage(driver);
+//        driver = DriverUtil.setUp();
+        loginPage = DriverUtil.createClass(LoginPage.class);
+        homePage = DriverUtil.createClass(HomePage.class);
+
     }
 
 
@@ -42,24 +40,22 @@ public class LoginStep {
 
     }
 
-
-    @Then("^Merchant should see username as on Home Page$")
-    public void merchantShouldSeeUsernameAsOnHomePage() throws Throwable {
-        homePage.hoverMerchantName();
-        assertEquals("Wrong merchant name", "TEST-MPOP", homePage.getMerchantName());
-    }
-
     @Then("^Merchant should see Access Denied Message$")
     public void merchantShouldSeeAccessDeniedMessage() throws Throwable {
-        Thread.sleep(3000);
-        assertTrue("Hatalı giriş", driver.findElement(By.cssSelector(".toast.toast-error")).isDisplayed());
+        Assert.assertTrue("Hatalı giriş", loginPage.checkLoginWithWrongCrediantialsToast());
+    }
+
+    @When("^Merchant should see \"([^\"]*)\" username as on Home Page$")
+    public void merchantShouldSeeUsernameAsOnHomePage(String username) throws Throwable {
+        homePage.hoverMerchantName();
+        assertEquals("Wrong merchant name", username, homePage.getMerchantName());
     }
 
 
-    @After
-    public void tearDown() {
-        DriverUtil.closeDriver(driver);
-    }
+//    @After
+//    public void tearDown() {
+//        DriverUtil.closeDriver(driver);
+//    }
 
 
 }

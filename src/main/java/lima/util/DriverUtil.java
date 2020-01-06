@@ -1,18 +1,35 @@
 package lima.util;
 
+import lima.base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 public class DriverUtil {
 
-    public static WebDriver getDriver() {
+    private static WebDriver driver;
+
+    public static void setUp() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/webdriver/chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
-        return driver;
     }
 
-    public static void closeDriver(WebDriver driver) {
+    public static void closeDriver() {
         driver.close();
     }
+
+    public static <T extends BasePage> T createClass(Class<T> clazz) {
+        try {
+            Constructor<T> constructor = clazz.getConstructor(WebDriver.class);
+            return constructor.newInstance(driver);
+        } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }

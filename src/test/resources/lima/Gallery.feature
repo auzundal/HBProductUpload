@@ -3,9 +3,9 @@ Feature: This feature contains gallery page's and its components' teste
 
   Background:
     Given Merchant is on the Login Page
-    When Merchant login with "TEST-MPOP" username, "Test123!" password
-    When Merchant should see username as "TEST-MPOP" on Home Page
-    Then Merchant click gallery page button
+    When Merchant login with "TEST-AHMET" username, "Test123!" password
+    When Merchant should see "TEST-AHMET" username as on Home Page
+    Then Merchant go to gallery page
 
   Scenario: Gallery page opening
     Given Merchant should see gallery page is opened
@@ -18,21 +18,29 @@ Feature: This feature contains gallery page's and its components' teste
     Then Merchant should see image upload modal is opened
     Then Merchant see all of the image upload modal components
 
+  @image-upload-single-image-test1
+  Scenario: Upload a single image with upload from my computer1
+    Given Merchant should see gallery page is opened
+    When  Merchant upload files in Image Upload Page:
+      | Single.png |
+      | emir.png   |
+    Then These images are available in Image Upload Page
+
+
   @image-upload-single-image
   Scenario: Upload a single image with upload from my computer
     Given Merchant click upload image button in empty gallery
     When  Merchant upload "Single.jpg" file from Image Upload Page
-    Then These images are available in Image Upload Page:
-      | Single.jpg |
+    Then These images are available in Image Upload Page
 
   @image-upload-upload-multiple-image-as-zip
   Scenario: Upload multiple image as a ZIP file
     Given Merchant click upload image button in gallery page
     When Merchant upload "SampleMultipleImageUpload.zip" file from Image Upload Page
-    Then These images are available in Image Upload Page:
-      | cat1.jpg |
-      | cat2.jpg |
-      | cat3.jpg |
+     #Then These images are available in Image Upload Page:
+      #| cat1.jpg |
+      #| cat2.jpg |
+      #| cat3.jpg |
 
   @image-upload-upload-single-image-as-rar
   Scenario: Upload a single image as a RAR file
@@ -71,8 +79,8 @@ Feature: This feature contains gallery page's and its components' teste
 
   Scenario: Upload an image with URL
     Given Merchant click upload image button in gallery page
-    When Merchant click "Bağlantıdan Yükle" tab
-    When  Merchant upload "https://iasbh.tmgrup.com.tr/ac71ff/0/0/0/0/0/0?u=http://i.sabah.com.tr/sb/galeri/yasam/en-iyi-en-guzel-kedi-fotograflari/1.jpg" file from Image Upload Page
+    When Merchant click upload with URL tab
+    When  Merchant upload "https://iasbh.tmgrup.com.tr/ac71ff/0/0/0/0/0/0?u=http://i.sabah.com.tr/sb/galeri/yasam/en-iyi-en-guzel-kedi-fotograflari/1.jpg" URL from Image Upload Page
     Then These images are available in Image Upload Page:
       | 1.jpg |
 
@@ -83,9 +91,9 @@ Feature: This feature contains gallery page's and its components' teste
     Then Merchant should see error component about invalid URL
 
   Scenario: Search an image that is in merchant's gallery
-    Given Merchant search "Single" in search field in gallery page
-    Then Merchant should see only see images that has "Single" word contained in image name
-    Then images count should be same as image cards
+    Given Merchant search "deliesra" in search field in gallery page
+    Then Merchant should see only see images that has "deliesra" word contained in image name
+    Then should be same as image cards
 
   Scenario: Check sort strategy
     Given Merchant click sort button
@@ -117,3 +125,11 @@ Feature: This feature contains gallery page's and its components' teste
     Then first image should be "1.jpg"
     And Merchant click sort arrow
     Then Merchant should see defauld sort button
+
+  Scenario: Delete Sıngle Image
+    Given Merchant search "canbab1a" in search field in gallery page
+    And Merchant select image for delete
+    And Click delete button
+    Then Merchant search "canbab1a" in search field in gallery page
+
+

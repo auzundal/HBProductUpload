@@ -13,14 +13,14 @@ public class BasePage {
 
     private WebDriverWait wait;
 
+    private Actions actions;
+
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
-
-
+        actions = new Actions(driver);
     }
-
 
     protected WebDriver getDriver() {
         return driver;
@@ -38,22 +38,30 @@ public class BasePage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    protected boolean isElementExists(By locator) {
+        return getDriver().findElements(locator).size() == 1;
+    }
 
     protected void click(By by) {
+        waitUntilVisibleByLocator(by);
         WebElement element = getDriver().findElement(by);
         element.click();
 
     }
 
-    public WebElement getUsernameField() {
-        return waitUntilVisibleByLocator(By.id("home-button-username")).findElement(By.tagName("span"));
-    }
 
     public void hover(By webElement) {
-        Actions action = new Actions(driver);
         WebElement hover = driver.findElement(webElement);
-        action.moveToElement(hover).build().perform();
+        actions.moveToElement(hover).build().perform();
+    }
 
+    public void clickAfterWaitForElement(By element) {
+        waitUntilVisibleByLocator(element);
+        click(element);
+    }
+
+    protected void uploadFile(By input, String path) {
+        waitUntilVisibleByLocator(input).sendKeys(path);
     }
 
 }

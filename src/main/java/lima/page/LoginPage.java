@@ -19,8 +19,11 @@ public class LoginPage extends BasePage {
         clickAndWrite(By.id("loginPage-input-username"), username);
         clickAndWrite(By.id("loginPage-input-password"), password);
         click(By.id("loginPage-button-login"));
-
     }
 
+    public boolean checkLoginWithWrongCrediantialsToast() {
+        waitUntilVisibleByLocator(By.cssSelector(".toast.toast-error"));
+        return isElementExists(By.cssSelector(".toast.toast-error"));
+    }
 
 }

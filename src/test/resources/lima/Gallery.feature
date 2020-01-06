@@ -22,8 +22,8 @@ Feature: This feature contains gallery page's and its components' teste
   Scenario: Upload a single image with upload from my computer1
     Given Merchant should see gallery page is opened
     When  Merchant upload files in Image Upload Page:
-      | Single.png |
-      | emir.png   |
+      | emir.jpg   |
+      | Single.jpg |
     Then These images are available in Image Upload Page
 
 

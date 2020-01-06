@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GalleryPage extends BasePage {
@@ -38,14 +39,34 @@ public class GalleryPage extends BasePage {
         // click to open pop up
         click(By.id("galleryView-button-uploadImage"));
 
-        List<String> imageNames = FileUtil.getValidImageNames();
-
-        for (int i = 0; i < imageNames.size(); i++) {
-            WebElement fileInput = getDriver().findElement(By.id("fileUploadModal-dragAndDrop-imageUpload"));
-//            WebElement fileInput = getDriver().findElement(By.xpath("/html/body/div/div[2]/div/div/div[6]/div/div/div[4]/label/div/input"));
-            fileInput.sendKeys(FileUtil.IMAGE_UPLOAD_FOLDER + "/" + imageNames.get(i) + "/" + "\n");
-            //.sendKeys("C:/Users/eanyig/Desktop/Lima/data/sample/imageUpload/emir.jpg \n C:/Users/eanyig/Desktop/Lima/data/sample/imageUpload/Single.jpg");
+        //  List<String> imagesName = FileUtil.getValidImageNames();
+        List<String> pathImages = new ArrayList<>();
+        for (String image : images) {
+            pathImages.add(FileUtil.IMAGE_UPLOAD_FOLDER + "/" + image);
         }
+        String imageList = String.join(" \n ", pathImages);
+        WebElement fileInput = getDriver().findElement(By.id("fileUploadModal-dragAndDrop-imageUpload"));
+        fileInput.sendKeys(imageList);
+        // String imageList = images.stream().map(image -> FileUtil.IMAGE_UPLOAD_FOLDER + "/" + image).collect(Collectors.joining(" \n "));
+
+//        for (int i = 0; i < images.size(); i++) {
+//            String imagesfull = FileUtil.IMAGE_UPLOAD_FOLDER + "/" + images.get(i);
+//        }
+//        for (int i = 0; i < 2; i++) {
+//
+////            fileInput.sendKeys(imagesfull);
+//            //  fileInput.sendKeys(FileUtil.IMAGE_UPLOAD_FOLDER + "/" + imagesName.get(i) + "\n " + imagesName.get(i + 1));
+//        }
+
+
+        //   List<String> imageNames = FileUtil.getValidImageNames();
+//
+//        for (int i = 0; i < imageNames.size(); i++) {
+//            WebElement fileInput = getDriver().findElement(By.id("fileUploadModal-dragAndDrop-imageUpload"));
+////            WebElement fileInput = getDriver().findElement(By.xpath("/html/body/div/div[2]/div/div/div[6]/div/div/div[4]/label/div/input"));
+//            fileInput.sendKeys(FileUtil.IMAGE_UPLOAD_FOLDER + "/" + imageNames.get(i) + "\\n ");
+//            //.sendKeys("C:/Users/eanyig/Desktop/Lima/data/sample/imageUpload/emir.jpg \n C:/Users/eanyig/Desktop/Lima/data/sample/imageUpload/Single.jpg");
+//        }
 
     }
 

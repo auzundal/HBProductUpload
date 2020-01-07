@@ -7,8 +7,8 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import lima.page.GalleryPage;
+import lima.page.UploadedMediaData;
 import lima.util.DriverUtil;
-import lima.util.FileUtil;
 import org.junit.Assert;
 
 import java.util.List;
@@ -78,13 +78,15 @@ public class GalleryStep {
 
     @Then("^These images are available in Image Upload Page$")
     public void theseImagesAreAvailableInImageUploadPage() throws Throwable {
-        List<String> fileNames = FileUtil.getValidImageNames();
-        for (int i = 0; i < fileNames.size(); i++) {
-            String imageName = galleryPage.getImageName(i);
-            String successMsg = galleryPage.getSuccessMsg(i);
-            Assert.assertEquals("Yükleme başarılı!", successMsg);
-            Assert.assertEquals(fileNames.get(i), imageName);
-        }
+        List<UploadedMediaData> uploadedImageResults = galleryPage.getUploadedImageResults();
+        System.out.println(uploadedImageResults);
+        // List<String> fileNames = FileUtil.getValidImageNames();
+        // for (int i = 0; i < fileNames.size(); i++) {
+        //     String imageName = galleryPage.getImageName(i);
+        //     String successMsg = galleryPage.getSuccessMsg(i);
+        //    Assert.assertEquals("Yükleme başarılı!", successMsg);
+        //    Assert.assertEquals(fileNames.get(i), imageName);
+        //  }
     }
 
     @When("^Merchant upload files in Image Upload Page:$")

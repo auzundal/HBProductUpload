@@ -33,22 +33,6 @@ Feature: This feature contains gallery page's and its components' teste
     When  Merchant upload "Single.jpg" file from Image Upload Page
     Then These images are available in Image Upload Page
 
-  @image-upload-upload-multiple-image-as-zip
-  Scenario: Upload multiple image as a ZIP file
-    Given Merchant click upload image button in gallery page
-    When Merchant upload "SampleMultipleImageUpload.zip" file from Image Upload Page
-     #Then These images are available in Image Upload Page:
-      #| cat1.jpg |
-      #| cat2.jpg |
-      #| cat3.jpg |
-
-  @image-upload-upload-single-image-as-rar
-  Scenario: Upload a single image as a RAR file
-    Given Merchant click upload image button in gallery page
-    When Catalog user upload "SampleSingleImageUpload.rar" file from Image Upload Page
-    Then These images are available in Image Upload Page:
-      | ANA SAYFA.png |
-
 
   Scenario: Upload a single image with via Drag and Drop
     Given Merchant click upload image button in gallery page

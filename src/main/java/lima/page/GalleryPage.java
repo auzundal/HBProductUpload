@@ -49,7 +49,7 @@ public class GalleryPage extends BasePage {
         fileInput.sendKeys(imageList);
         // String imageList = images.stream().map(image -> FileUtil.IMAGE_UPLOAD_FOLDER + "/" + image).collect(Collectors.joining(" \n "));
 
-//        for (int i = 0; i < images.size(); i++) {
+//       for (int i = 0; i < images.size(); i++) {
 //            String imagesfull = FileUtil.IMAGE_UPLOAD_FOLDER + "/" + images.get(i);
 //        }
 //        for (int i = 0; i < 2; i++) {
@@ -107,6 +107,21 @@ public class GalleryPage extends BasePage {
     public String getImageName(int idx) {
         int imageIndx = idx + 1;
         return getDriver().findElement(By.xpath("/html/body/div/div[2]/div/div/div[6]/div/div/div[4]/ul/li[" + imageIndx + "]/div[2]/span[1]")).getText();
+    }
+
+    public List<UploadedMediaData> getUploadedImageResults() {
+        List<UploadedMediaData> uploadedMediaDataList = new ArrayList<>();
+        List<WebElement> elements = getDriver().findElements(By.id("EMIRHAN"));
+
+        for (WebElement imageElement : elements) {
+            UploadedMediaData uploadedMediaData = new UploadedMediaData();
+            uploadedMediaData.setName(imageElement.findElement(By.id("Bir şekilde resimin ismine ulaşacaksın")).getText());
+            uploadedMediaData.setMessage(imageElement.findElement(By.id("Bir şekilde yüklenen resmin sonucuna ulaşacaksın")).getText());
+            uploadedMediaDataList.add(uploadedMediaData);
+        }
+
+        return uploadedMediaDataList;
+
     }
 }
 

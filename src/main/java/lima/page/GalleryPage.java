@@ -21,9 +21,9 @@ public class GalleryPage extends BasePage {
     }
 
 
-    public boolean checkGalleryIsOpened() {
-        waitUntilVisibleByLocator(By.id("galleryView-div-showTitle"));
-        return isElementExists(By.id("galleryView-div-showTitle"));
+    public String getTitle() {
+        return waitUntilVisibleByLocator(By.id("galleryView-div-showTitle")).getText();
+//        return isElementExists(By.id("galleryView-div-showTitle"));
     }
 
     public boolean checkEmptyGalleryPage() {
@@ -39,49 +39,28 @@ public class GalleryPage extends BasePage {
         // click to open pop up
         click(By.id("galleryView-button-uploadImage"));
 
-        //  List<String> imagesName = FileUtil.getValidImageNames();
         List<String> pathImages = new ArrayList<>();
         for (String image : images) {
             pathImages.add(FileUtil.IMAGE_UPLOAD_FOLDER + "/" + image);
+            ////      click(By.cssSelector("div[title='" + image + "']"));
         }
         String imageList = String.join(" \n ", pathImages);
         WebElement fileInput = getDriver().findElement(By.id("fileUploadModal-dragAndDrop-imageUpload"));
         fileInput.sendKeys(imageList);
-        // String imageList = images.stream().map(image -> FileUtil.IMAGE_UPLOAD_FOLDER + "/" + image).collect(Collectors.joining(" \n "));
-
-//       for (int i = 0; i < images.size(); i++) {
-//            String imagesfull = FileUtil.IMAGE_UPLOAD_FOLDER + "/" + images.get(i);
-//        }
-//        for (int i = 0; i < 2; i++) {
-//
-////            fileInput.sendKeys(imagesfull);
-//            //  fileInput.sendKeys(FileUtil.IMAGE_UPLOAD_FOLDER + "/" + imagesName.get(i) + "\n " + imagesName.get(i + 1));
-//        }
-
-
-        //   List<String> imageNames = FileUtil.getValidImageNames();
-//
-//        for (int i = 0; i < imageNames.size(); i++) {
-//            WebElement fileInput = getDriver().findElement(By.id("fileUploadModal-dragAndDrop-imageUpload"));
-////            WebElement fileInput = getDriver().findElement(By.xpath("/html/body/div/div[2]/div/div/div[6]/div/div/div[4]/label/div/input"));
-//            fileInput.sendKeys(FileUtil.IMAGE_UPLOAD_FOLDER + "/" + imageNames.get(i) + "\\n ");
-//            //.sendKeys("C:/Users/eanyig/Desktop/Lima/data/sample/imageUpload/emir.jpg \n C:/Users/eanyig/Desktop/Lima/data/sample/imageUpload/Single.jpg");
-//        }
-
     }
 
     public void clickUploadWithUrlTab() {
         clickAfterWaitForElement(By.id("fileUploadModal-tab-fromLink"));
     }
 
-    public void uploadImageWithUrl(String UrlAdress) {
-        clickAndWrite(By.cssSelector("[data_id='styles_inputContainer_']"), UrlAdress);
+    public void uploadImageWithUrl(String urlAdress) {
+        clickAndWrite(By.cssSelector("[data_id='styles_inputContainer_']"), urlAdress);
         click(By.id("linkFileUpload-button-uploadWithLink"));
     }
 
-    public void searchImageInGalleryPage(String ImageName) {
+    public void searchImageInGalleryPage(String imageName) {
         waitUntilVisibleByLocator(By.id("galleryView-input-searchImage"));
-        clickAndWrite(By.id("galleryView-input-searchImage"), ImageName);
+        clickAndWrite(By.id("galleryView-input-searchImage"), imageName);
 
     }
 
@@ -97,6 +76,7 @@ public class GalleryPage extends BasePage {
         click(By.id("imageCard-button-removeImage"));
         click(By.cssSelector(".false.modal__modalButton___27v8M.modal__secondButton___1udK8"));
 
+
     }
 
     public String getSuccessMsg(int idx) {
@@ -111,13 +91,17 @@ public class GalleryPage extends BasePage {
 
     public List<UploadedMediaData> getUploadedImageResults() {
         List<UploadedMediaData> uploadedMediaDataList = new ArrayList<>();
-        List<WebElement> elements = getDriver().findElements(By.id("EMIRHAN"));
+//        getDriver().findElement(By.id("ul-un idsi")).findElements(By.tagName("li"));
+        waitUntilVisibleByLocator(By.cssSelector("#merchant-portal > div > div.fileUploadModal__container___17MAk > div > div > div.uploadScreen__uploadContainer___2sXxU > div > div > div > div > span.fileUploadModal__titleText___2t8LD"));
+        List<WebElement> elements = getDriver().findElements(By.xpath("/html/body/div/div[2]/div/div/div[6]/div/div/div[4]/ul/li"));
+        System.out.println(elements);
 
         for (WebElement imageElement : elements) {
             UploadedMediaData uploadedMediaData = new UploadedMediaData();
-            uploadedMediaData.setName(imageElement.findElement(By.id("Bir şekilde resimin ismine ulaşacaksın")).getText());
-            uploadedMediaData.setMessage(imageElement.findElement(By.id("Bir şekilde yüklenen resmin sonucuna ulaşacaksın")).getText());
+            uploadedMediaData.setName(imageElement.findElement(By.cssSelector("div > span > span")).getText());
+            uploadedMediaData.setMessage(imageElement.findElement(By.cssSelector("div > span:nth-child(2)  ")).getText());
             uploadedMediaDataList.add(uploadedMediaData);
+
         }
 
         return uploadedMediaDataList;

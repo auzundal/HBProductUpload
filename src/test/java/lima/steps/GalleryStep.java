@@ -13,6 +13,9 @@ import org.junit.Assert;
 
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
 public class GalleryStep {
     private GalleryPage galleryPage;
 
@@ -27,9 +30,15 @@ public class GalleryStep {
     }
 
 
-    @Given("^Merchant should see gallery page is opened$")
-    public void merchantShouldSeeGalleryPageIsOpened() throws Throwable {
-        Assert.assertTrue("Gallery page cannot be opened", galleryPage.checkGalleryIsOpened());
+//    @Then("^Merchant should see gallery page is opened$")
+//    public void merchantShouldSeeGalleryPageIsOpened() throws Throwable {
+//
+////        Assert.assertTrue("Gallery page cannot be opened", galleryPage.checkGalleryIsOpened());
+//    }
+
+    @Then("^Merchant should see title as \"([^\"]*)\" in Gallery Page$")
+    public void merchantShouldSeeTitleAsInGalleryPage(String title) throws Throwable {
+        assertThat(galleryPage.getTitle(), is(title));
     }
 
     @Then("^I see there is no image in gallery page$")
@@ -76,22 +85,17 @@ public class GalleryStep {
     }
 
 
-    @Then("^These images are available in Image Upload Page$")
-    public void theseImagesAreAvailableInImageUploadPage() throws Throwable {
-        List<UploadedMediaData> uploadedImageResults = galleryPage.getUploadedImageResults();
-        System.out.println(uploadedImageResults);
-        // List<String> fileNames = FileUtil.getValidImageNames();
-        // for (int i = 0; i < fileNames.size(); i++) {
-        //     String imageName = galleryPage.getImageName(i);
-        //     String successMsg = galleryPage.getSuccessMsg(i);
-        //    Assert.assertEquals("Yükleme başarılı!", successMsg);
-        //    Assert.assertEquals(fileNames.get(i), imageName);
-        //  }
-    }
-
     @When("^Merchant upload files in Image Upload Page:$")
     public void merchantUploadFilesInImageUploadPage(List<String> images) throws Throwable {
         galleryPage.uploadImageFile(images);
 
     }
+
+    @Then("^These images are available in Image Upload Page:$")
+    public void theseImagesAreAvailableInImageUploadPage(List<UploadedMediaData> uploadedMediaDataList) throws Throwable {
+        List<UploadedMediaData> uploadedImageResults = galleryPage.getUploadedImageResults();
+        System.out.println(uploadedImageResults);
+    }
+
+
 }

@@ -7,24 +7,33 @@ Feature: This feature contains gallery page's and its components' teste
     When Merchant should see "TEST-AHMET" username as on Home Page
     Then Merchant go to gallery page
 
-  Scenario: Gallery page opening
-    Given Merchant should see gallery page is opened
+  Scenario: Check gallery page opening
+    Then Merchant should see title as "Görsel Galeri" in Gallery Page
     Then I see there is no image in gallery page
 
 
-  Scenario: Gallery image upload modal
-    Given Merchant should see gallery page is opened
-    When Merchant click upload image button in empty gallery
-    Then Merchant should see image upload modal is opened
-    Then Merchant see all of the image upload modal components
-
-  @image-upload-single-image-test1
+  @image-upload-single-image-success
   Scenario: Upload a single image with upload from my computer1
-    Given Merchant should see gallery page is opened
+    Given Merchant should see title as "Görsel Galeri" in Gallery Page
     When  Merchant upload files in Image Upload Page:
-      | emir.jpg   |
-      | Single.jpg |
-    Then These images are available in Image Upload Page
+      | emir.jpg |
+    Then These images are available in Image Upload Page:
+      | name     | message           |
+      | emir.jpg | Yükleme başarılı! |
+
+
+  @image-upload-multiple-image-success
+  Scenario: Upload a single image with upload from my computer1
+    Given Merchant should see title as "Görsel Galeri" in Gallery Page
+    When  Merchant upload files in Image Upload Page:
+      | emir.jpg     |
+      | Single.jpg   |
+      | image11s.jpg |
+    Then These images are available in Image Upload Page:
+      | name         | message           |
+      | emir.jpg     | Yükleme başarılı! |
+      | Single.jpg   | Yükleme başarılı! |
+      | image11s.jpg | Yükleme başarılı! |
 
 
   @image-upload-single-image

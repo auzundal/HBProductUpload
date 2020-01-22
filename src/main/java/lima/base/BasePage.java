@@ -42,22 +42,22 @@ public class BasePage {
         return getDriver().findElements(locator).size() == 1;
     }
 
-    protected void click(By by) {
-        waitUntilVisibleByLocator(by);
-        WebElement element = getDriver().findElement(by);
+    protected void click(By locator) {
+        WebElement element = waitUntilVisibleByLocator(locator);
+//        WebElement element = getDriver().findElement(locator);
         element.click();
 
     }
 
 
-    public void hover(By webElement) {
-        WebElement hover = driver.findElement(webElement);
-        actions.moveToElement(hover).build().perform();
+    public void hover(By locator) {
+        WebElement element = driver.findElement(locator);
+        actions.moveToElement(element).build().perform();
     }
 
-    public void clickAfterWaitForElement(By element) {
-        waitUntilVisibleByLocator(element);
-        click(element);
+    public void clickAfterWaitForElement(By locator) {
+        waitUntilVisibleByLocator(locator);
+        click(locator);
     }
 
     protected void uploadFile(By input, String path) {

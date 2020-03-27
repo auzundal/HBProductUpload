@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GalleryPage extends BasePage {
@@ -22,8 +23,8 @@ public class GalleryPage extends BasePage {
 
 
     public String getTitle() {
-        return waitUntilVisibleByLocator(By.id("galleryView-div-showTitle")).getText();
-//        return isElementExists(By.id("galleryView-div-showTitle"));
+        return getText(By.id("galleryView-div-showTitle"));
+
     }
 
     public boolean checkEmptyGalleryPage() {
@@ -35,14 +36,20 @@ public class GalleryPage extends BasePage {
         clickAfterWaitForElement(By.id("galleryView-button-uploadImage"));
     }
 
-    public void uploadImageFile(List<String> images) {
-        // click to open pop up
+    public void clickUploadImageWithGalleryImage() {
         click(By.id("galleryView-button-uploadImage"));
+    }
 
+    public void clickUploadImageWithoutGalleryImage() {
+        click(By.id("galleryView-button-searchNoImageUpload"));
+    }
+
+
+    public void uploadImageFile(List<String> images) {
         List<String> pathImages = new ArrayList<>();
         for (String image : images) {
             pathImages.add(FileUtil.IMAGE_UPLOAD_FOLDER + "/" + image);
-            ////      click(By.cssSelector("div[title='" + image + "']"));
+
         }
         String imageList = String.join(" \n ", pathImages);
         WebElement fileInput = getDriver().findElement(By.id("fileUploadModal-dragAndDrop-imageUpload"));
@@ -54,58 +61,76 @@ public class GalleryPage extends BasePage {
     }
 
     public void uploadImageWithUrl(String urlAdress) {
-        clickAndWrite(By.cssSelector("[data_id='styles_inputContainer_']"), urlAdress);
+        clickAndWrite(By.id("linkFileUpload-input-linkImage"), urlAdress);
         click(By.id("linkFileUpload-button-uploadWithLink"));
     }
 
-    public void searchImageInGalleryPage(String imageName) {
-        waitUntilVisibleByLocator(By.id("galleryView-input-searchImage"));
-        clickAndWrite(By.id("galleryView-input-searchImage"), imageName);
+    public List<String> searchImageInGalleryPage(String imageName) {
 
+        List<String> imageList = Arrays.asList(imageName.split(","));
+
+        for (String image1 : imageList) {
+
+            waitUntilVisibleByLocator(By.id("galleryView-input-searchImage"));
+            clickAndWrite(By.id("galleryView-input-searchImage"), image1);
+            getDriver().findElement(By.id("galleryView-input-searchImage")).clear();
+        }
+        return imageList;
     }
+
 
     public void searchImageResultInGalleryPage() {
-        waitUntilVisibleByLocator(By.cssSelector("imageList__cardTitle___1VBaj")).getText();
+        waitUntilVisibleByLocator(By.cssSelector("div[title='Single.jpg']")).getText();
     }
 
-    public void selectImageCard() {
-        click(By.cssSelector(".imageList__cardTitle___1VBaj"));
+    public void selectImageCard(List<String> imageList) {
+
+
+        for (String imageName : imageList) {
+
+            click(By.cssSelector("div[title='" + imageName + "'] > div > span"));
+        }
+
     }
 
-    public void deleteImageButtonClick() throws InterruptedException {
-        click(By.id("imageCard-button-removeImage"));
-        click(By.cssSelector(".false.modal__modalButton___27v8M.modal__secondButton___1udK8"));
+    public void deleteImageTrashButtonClick(List<String> imageList) {
+
+        for (String imageName : imageList) {
+            WebElement imageCard = hover(By.cssSelector("div[title='" + imageName + "']"));
+            imageCard.findElement(By.id("imageCard-button-removeImage")).click();
+            click(By.xpath("//*[@id='product-app']/div/div[2]/div/div[2]/button[2]"));
 
 
-    }
+        }
 
-    public String getSuccessMsg(int idx) {
-        int imageIndx = idx + 1;
-        return getDriver().findElement(By.xpath("/html/body/div/div[2]/div/div/div[6]/div/div/div[4]/ul/li[" + imageIndx + "]/div[2]/span[2]")).getText();
-    }
-
-    public String getImageName(int idx) {
-        int imageIndx = idx + 1;
-        return getDriver().findElement(By.xpath("/html/body/div/div[2]/div/div/div[6]/div/div/div[4]/ul/li[" + imageIndx + "]/div[2]/span[1]")).getText();
     }
 
     public List<UploadedMediaData> getUploadedImageResults() {
         List<UploadedMediaData> uploadedMediaDataList = new ArrayList<>();
-//        getDriver().findElement(By.id("ul-un idsi")).findElements(By.tagName("li"));
-        waitUntilVisibleByLocator(By.cssSelector("#merchant-portal > div > div.fileUploadModal__container___17MAk > div > div > div.uploadScreen__uploadContainer___2sXxU > div > div > div > div > span.fileUploadModal__titleText___2t8LD"));
-        List<WebElement> elements = getDriver().findElements(By.xpath("/html/body/div/div[2]/div/div/div[6]/div/div/div[4]/ul/li"));
-        System.out.println(elements);
+
+        List<WebElement> elements = getDriver().findElements(By.cssSelector("#fileUploadModal-div-tabsParent > div > ul > li"));
 
         for (WebElement imageElement : elements) {
             UploadedMediaData uploadedMediaData = new UploadedMediaData();
             uploadedMediaData.setName(imageElement.findElement(By.cssSelector("div > span > span")).getText());
-            uploadedMediaData.setMessage(imageElement.findElement(By.cssSelector("div > span:nth-child(2)  ")).getText());
+            uploadedMediaData.setMessage(imageElement.findElement(By.cssSelector("div > span:nth-child(2)")).getText());
             uploadedMediaDataList.add(uploadedMediaData);
 
         }
-
         return uploadedMediaDataList;
-
     }
+
+
+    public String invalidImageFormatErrorMessage() {
+        WebElement errorToastNotification = waitUntilVisibleByLocator(By.cssSelector("#product-app > div > div.notification__notification___3eGwx.notification__success___1YQYR > span > span:nth-child(1)"));
+        return errorToastNotification.getText();
+    }
+
+    public String invalidUrlErrorMessaage() {
+        WebElement errorPageTitle = waitUntilVisibleByLocator(By.id("errorPage-span-title"));
+        return errorPageTitle.getText();
+    }
+
+
 }
 

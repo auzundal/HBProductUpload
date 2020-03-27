@@ -13,26 +13,21 @@ import static org.junit.Assert.assertEquals;
 
 public class LoginStep {
 
-
     private LoginPage loginPage;
     private HomePage homePage;
-//    private WebDriver driver;
-
 
     @Before
     public void setup() {
-//        driver = DriverUtil.setUp();
+
         loginPage = DriverUtil.createClass(LoginPage.class);
         homePage = DriverUtil.createClass(HomePage.class);
 
     }
 
-
     @Given("^Merchant is on the Login Page$")
     public void catalogUserIsOnTheLoginPage() throws Throwable {
         loginPage.navigateToLogin();
     }
-
 
     @When("^Merchant login with \"([^\"]*)\" username, \"([^\"]*)\" password$")
     public void merchantLoginWithUsernamePassword(String username, String password) throws Throwable {
@@ -50,12 +45,5 @@ public class LoginStep {
         homePage.hoverMerchantName();
         assertEquals("Wrong merchant name", username, homePage.getMerchantName());
     }
-
-
-//    @After
-//    public void tearDown() {
-//        DriverUtil.closeDriver(driver);
-//    }
-
 
 }

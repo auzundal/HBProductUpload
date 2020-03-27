@@ -50,9 +50,10 @@ public class BasePage {
     }
 
 
-    public void hover(By locator) {
-        WebElement element = driver.findElement(locator);
-        actions.moveToElement(element).build().perform();
+    public WebElement hover(By locator) {
+        WebElement webElement = waitUntilVisibleByLocator(locator);
+        actions.moveToElement(webElement).build().perform();
+        return webElement;
     }
 
     public void clickAfterWaitForElement(By locator) {
@@ -63,6 +64,11 @@ public class BasePage {
     protected void uploadFile(By input, String path) {
         waitUntilVisibleByLocator(input).sendKeys(path);
     }
+
+    public String getText(By locator) {
+        return waitUntilVisibleByLocator(locator).getText();
+    }
+
 
 }
 

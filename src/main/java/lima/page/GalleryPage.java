@@ -18,30 +18,30 @@ public class GalleryPage extends BasePage {
     }
 
     public void navigateToGallery() {
-        getDriver().get("http://192.168.55.112:30011/v2/gallery");
+        getDriver().get(imageGalleryURL);
     }
 
 
     public String getTitle() {
-        return getText(By.id("galleryView-div-showTitle"));
+        return getText(galleryViewTitle);
 
     }
 
     public boolean checkEmptyGalleryPage() {
-        waitUntilVisibleByLocator(By.id("galleryView-button-searchNoImageUpload"));
-        return isElementExists(By.id("galleryView-button-searchNoImageUpload"));
+        waitUntilVisibleByLocator(noImageUploadButton);
+        return isElementExists(noImageUploadButton);
     }
 
     public void clickUploadImageButton() {
-        clickAfterWaitForElement(By.id("galleryView-button-uploadImage"));
+        clickAfterWaitForElement(imageUploadButton);
     }
 
     public void clickUploadImageWithGalleryImage() {
-        click(By.id("galleryView-button-uploadImage"));
+        click(imageUploadButton);
     }
 
     public void clickUploadImageWithoutGalleryImage() {
-        click(By.id("galleryView-button-searchNoImageUpload"));
+        click(noImageUploadButton);
     }
 
 
@@ -52,17 +52,17 @@ public class GalleryPage extends BasePage {
 
         }
         String imageList = String.join(" \n ", pathImages);
-        WebElement fileInput = getDriver().findElement(By.id("fileUploadModal-dragAndDrop-imageUpload"));
+        WebElement fileInput = getDriver().findElement(fileUploadButton);
         fileInput.sendKeys(imageList);
     }
 
     public void clickUploadWithUrlTab() {
-        clickAfterWaitForElement(By.id("fileUploadModal-tab-fromLink"));
+        clickAfterWaitForElement(fileUploadFromUrlButton);
     }
 
     public void uploadImageWithUrl(String urlAdress) {
-        clickAndWrite(By.id("linkFileUpload-input-linkImage"), urlAdress);
-        click(By.id("linkFileUpload-button-uploadWithLink"));
+        clickAndWrite(fileUploadUrlTextbox, urlAdress);
+        click(fileUploadButtonFromUrl);
     }
 
     public List<String> searchImageInGalleryPage(String imageName) {
@@ -71,9 +71,9 @@ public class GalleryPage extends BasePage {
 
         for (String image1 : imageList) {
 
-            waitUntilVisibleByLocator(By.id("galleryView-input-searchImage"));
-            clickAndWrite(By.id("galleryView-input-searchImage"), image1);
-            getDriver().findElement(By.id("galleryView-input-searchImage")).clear();
+            waitUntilVisibleByLocator(searchImageTextbox);
+            clickAndWrite(searchImageTextbox, image1);
+            getDriver().findElement(searchImageTextbox).clear();
         }
         return imageList;
     }
@@ -97,7 +97,7 @@ public class GalleryPage extends BasePage {
 
         for (String imageName : imageList) {
             WebElement imageCard = hover(By.cssSelector("div[title='" + imageName + "']"));
-            imageCard.findElement(By.id("imageCard-button-removeImage")).click();
+            imageCard.findElement(removeImageButton).click();
             click(By.xpath("//*[@id='product-app']/div/div[2]/div/div[2]/button[2]"));
 
 
@@ -127,10 +127,20 @@ public class GalleryPage extends BasePage {
     }
 
     public String invalidUrlErrorMessaage() {
-        WebElement errorPageTitle = waitUntilVisibleByLocator(By.id("errorPage-span-title"));
+        WebElement errorPageTitle = waitUntilVisibleByLocator(errorPageSpanTitle);
         return errorPageTitle.getText();
     }
 
-
+    private String imageGalleryURL = ("http://192.168.55.112:30011/v2/gallery");
+    private By galleryViewTitle = By.id("galleryView-div-showTitle");
+    private By noImageUploadButton = By.id("galleryView-button-searchNoImageUpload");
+    private By imageUploadButton = By.id("galleryView-button-uploadImage");
+    private By fileUploadButton = By.id("fileUploadModal-dragAndDrop-imageUpload");
+    private By fileUploadFromUrlButton = By.id("fileUploadModal-tab-fromLink");
+    private By fileUploadUrlTextbox = By.id("linkFileUpload-input-linkImage");
+    private By fileUploadButtonFromUrl = By.id("linkFileUpload-button-uploadWithLink");
+    private By searchImageTextbox = By.id("galleryView-input-searchImage");
+    private By removeImageButton = By.id("imageCard-button-removeImage");
+    private By errorPageSpanTitle = By.id("errorPage-span-title");
 }
 

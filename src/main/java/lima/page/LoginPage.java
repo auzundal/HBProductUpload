@@ -12,18 +12,23 @@ public class LoginPage extends BasePage {
     }
 
     public void navigateToLogin() {
-        getDriver().get("http://192.168.55.112:30011/login");
+        getDriver().get(rootMainPageloginURL);
     }
 
     public void login(String username, String password) {
-        clickAndWrite(By.id("loginPage-input-username"), username);
-        clickAndWrite(By.id("loginPage-input-password"), password);
-        click(By.id("loginPage-button-login"));
+        clickAndWrite(usernameTextbox, username);
+        clickAndWrite(passwordTextbox, password);
+        click(loginButton);
     }
 
     public boolean checkLoginWithWrongCrediantialsToast() {
-        waitUntilVisibleByLocator(By.cssSelector(".toast.toast-error"));
-        return isElementExists(By.cssSelector(".toast.toast-error"));
+        waitUntilVisibleByLocator(errorMessageToast);
+        return isElementExists(errorMessageToast);
     }
 
+    private String rootMainPageloginURL = ("http://192.168.55.112:30011/login");
+    private By usernameTextbox = By.id("loginPage-input-username");
+    private By passwordTextbox = By.id("loginPage-input-password");
+    private By loginButton = By.id("loginPage-button-login");
+    private By errorMessageToast = By.cssSelector(".toast.toast-error");
 }

@@ -12,7 +12,7 @@ public class HomePage extends BasePage {
 
     public void hoverMerchantName() throws InterruptedException {
         Thread.sleep(4000);
-        hover(By.cssSelector("[data-for='toolTip-merchant']"));
+        hover(merchantTooltip);
 
 
     }
@@ -21,5 +21,5 @@ public class HomePage extends BasePage {
         return getDriver().findElement(By.id("toolTip-merchant")).getText();
     }
 
-
+    private By merchantTooltip = By.cssSelector("[data-for='toolTip-merchant']");
 }

@@ -27,7 +27,7 @@ public class BasePage {
     }
 
     protected void clickAndWrite(By by, String value) {
-        WebElement element = getDriver().findElement(by);
+        WebElement element = waitUntilVisibleByLocator(by);
         element.click();
         element.sendKeys(value);
 
@@ -44,7 +44,6 @@ public class BasePage {
 
     protected void click(By locator) {
         WebElement element = waitUntilVisibleByLocator(locator);
-//        WebElement element = getDriver().findElement(locator);
         element.click();
 
     }
@@ -59,10 +58,6 @@ public class BasePage {
     public void clickAfterWaitForElement(By locator) {
         waitUntilVisibleByLocator(locator);
         click(locator);
-    }
-
-    protected void uploadFile(By input, String path) {
-        waitUntilVisibleByLocator(input).sendKeys(path);
     }
 
     public String getText(By locator) {

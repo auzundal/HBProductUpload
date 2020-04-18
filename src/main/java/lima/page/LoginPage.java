@@ -1,5 +1,6 @@
 package lima.page;
 
+import io.qameta.allure.Step;
 import lima.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,18 +12,23 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
+    @Step
     public void navigateToLogin() {
         getDriver().get(rootMainPageloginURL);
+        takeScreenShot("Adrese gidildi...");
+
     }
 
     public void login(String username, String password) {
         clickAndWrite(usernameTextbox, username);
         clickAndWrite(passwordTextbox, password);
         click(loginButton);
+        takeScreenShot("login");
     }
 
     public boolean checkLoginWithWrongCrediantialsToast() {
         waitUntilVisibleByLocator(errorMessageToast);
+        takeScreenShot("checkLoginWithWrongCrediantialsToast");
         return isElementExists(errorMessageToast);
     }
 

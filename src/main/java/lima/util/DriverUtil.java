@@ -1,20 +1,51 @@
 package lima.util;
 
 import lima.base.BasePage;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class DriverUtil {
 
+    public static WebDriver getDriver() {
+        return driver;
+    }
+
+    //public static void setDriver(WebDriver driver) {
+    // DriverUtil.driver = driver;
+    //}
+
     private static WebDriver driver;
 
+    private static RemoteWebDriver remoteWebDriver;
+
     public static void setUp() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/webdriver/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        boolean remote = false;
+
+        if (remote) {
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("start-maximized");
+            try {
+                driver = new RemoteWebDriver(new URL("http://192.168.1.29:4444/wd/hub"), options);
+                //driver = new RemoteWebDriver(new URL("http://192.168.21.230:4444/wd/hub"), options);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("start-maximized");
+            System.setProperty("webdriver.chrome.driver", "src/main/resources/webdriver/chromedriver.exe");
+            driver = new ChromeDriver(options);
+        }
+
     }
 
     public static void closeDriver() {

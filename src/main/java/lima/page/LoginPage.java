@@ -2,10 +2,11 @@ package lima.page;
 
 import io.qameta.allure.Step;
 import lima.base.BasePage;
+import lima.constants.Constants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage extends BasePage {
+public class LoginPage extends BasePage  implements Constants.LoginPage {
 
 
     public LoginPage(WebDriver driver) {
@@ -31,10 +32,4 @@ public class LoginPage extends BasePage {
         takeScreenShot("checkLoginWithWrongCrediantialsToast");
         return isElementExists(errorMessageToast);
     }
-
-    private String rootMainPageloginURL = ("http://192.168.55.112:30011/login");
-    private By usernameTextbox = By.id("loginPage-input-username");
-    private By passwordTextbox = By.id("loginPage-input-password");
-    private By loginButton = By.id("loginPage-button-login");
-    private By errorMessageToast = By.cssSelector(".toast.toast-error");
 }

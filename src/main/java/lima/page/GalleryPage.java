@@ -1,6 +1,7 @@
 package lima.page;
 
 import lima.base.BasePage;
+import lima.constants.Constants;
 import lima.util.FileUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class GalleryPage extends BasePage {
+public class GalleryPage extends BasePage  implements Constants.GalleryPage {
 
 
     public GalleryPage(WebDriver driver) {
@@ -130,17 +131,5 @@ public class GalleryPage extends BasePage {
         WebElement errorPageTitle = waitUntilVisibleByLocator(errorPageSpanTitle);
         return errorPageTitle.getText();
     }
-
-    private String imageGalleryURL = ("http://192.168.55.112:30011/v2/gallery");
-    private By galleryViewTitle = By.id("galleryView-div-showTitle");
-    private By noImageUploadButton = By.id("galleryView-button-searchNoImageUpload");
-    private By imageUploadButton = By.id("galleryView-button-uploadImage");
-    private By fileUploadButton = By.id("fileUploadModal-dragAndDrop-imageUpload");
-    private By fileUploadFromUrlButton = By.id("fileUploadModal-tab-fromLink");
-    private By fileUploadUrlTextbox = By.id("linkFileUpload-input-linkImage");
-    private By fileUploadButtonFromUrl = By.id("linkFileUpload-button-uploadWithLink");
-    private By searchImageTextbox = By.id("galleryView-input-searchImage");
-    private By removeImageButton = By.id("imageCard-button-removeImage");
-    private By errorPageSpanTitle = By.id("errorPage-span-title");
 }
 

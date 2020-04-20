@@ -6,12 +6,13 @@ import lima.util.FileUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import static lima.constants.Constants.GalleryPage.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class GalleryPage extends BasePage  implements Constants.GalleryPage {
+public class GalleryPage extends BasePage {
 
 
     public GalleryPage(WebDriver driver) {

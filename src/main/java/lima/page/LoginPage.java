@@ -5,8 +5,9 @@ import lima.base.BasePage;
 import lima.constants.Constants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import static lima.constants.Constants.LoginPage.*;
 
-public class LoginPage extends BasePage  implements Constants.LoginPage {
+public class LoginPage extends BasePage {
 
 
     public LoginPage(WebDriver driver) {

@@ -73,7 +73,7 @@ public class BasePage {
     }
 
     public void takeScreenShot(String screenShotName) {
-        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        //File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
             TakesScreenshot scrShot = ((TakesScreenshot) getDriver());
             File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);

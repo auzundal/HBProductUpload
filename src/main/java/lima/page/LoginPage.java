@@ -17,7 +17,7 @@ public class LoginPage extends BasePage {
     @Step
     public void navigateToLogin() {
         getDriver().get(rootMainPageloginURL);
-        takeScreenShot("Adrese gidildi...");
+        takeScreenShot("Address is visited...");
 
     }
 

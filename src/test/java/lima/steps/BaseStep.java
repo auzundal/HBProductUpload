@@ -23,7 +23,7 @@ public class BaseStep {
     public void setup() {
         DriverUtil.setUp();
 
-        Allure.addAttachment("Browser ayağa kalktı...", new ByteArrayInputStream(((TakesScreenshot) DriverUtil.getDriver()).getScreenshotAs(OutputType.BYTES)));
+        Allure.addAttachment("Browser is up...", new ByteArrayInputStream(((TakesScreenshot) DriverUtil.getDriver()).getScreenshotAs(OutputType.BYTES)));
     }
 
     @Attachment(value = "Page screenshot", type = "image/png")
@@ -39,8 +39,8 @@ public class BaseStep {
     @After
     public void tearDown(Scenario scenario) {
         if(scenario.isFailed()) {
-            Allure.addAttachment("Senaryo hatalı sonuçlandı...", new ByteArrayInputStream(((TakesScreenshot) DriverUtil.getDriver()).getScreenshotAs(OutputType.BYTES)));
-            Allure.addAttachment("Senaryo hata: ", scenario.getName());
+            Allure.addAttachment("Scenario is failed...", new ByteArrayInputStream(((TakesScreenshot) DriverUtil.getDriver()).getScreenshotAs(OutputType.BYTES)));
+            Allure.addAttachment("Scenario error: ", scenario.getName());
         }
         DriverUtil.closeDriver();
     }

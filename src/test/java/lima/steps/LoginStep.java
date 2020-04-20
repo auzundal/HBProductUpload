@@ -32,7 +32,7 @@ public class LoginStep {
     @Given("^Merchant is on the Login Page$")
     public void catalogUserIsOnTheLoginPage() throws Throwable {
         loginPage.navigateToLogin();
-        loginPage.takeScreenShot("Login url gidildi...");
+        loginPage.takeScreenShot("Login url is visited...");
 
     }
 

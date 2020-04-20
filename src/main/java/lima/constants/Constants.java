@@ -8,13 +8,13 @@ public interface Constants {
         By galleryViewTitle = By.id("galleryView-div-showTitle");
         By noImageUploadButton = By.id("galleryView-button-searchNoImageUpload");
         By imageUploadButton = By.id("galleryView-button-uploadImage");
-        By fileUploadButton = By.id("fileUploadModal-dragAndDrop-imageUpload");
-        By fileUploadFromUrlButton = By.id("fileUploadModal-tab-fromLink");
-        By fileUploadUrlTextbox = By.id("linkFileUpload-input-linkImage");
-        By fileUploadButtonFromUrl = By.id("linkFileUpload-button-uploadWithLink");
+        By imageUploadModalDragAndDrop = By.id("fileUploadModal-dragAndDrop-imageUpload");
+        By imageUploadFromUrlButton = By.id("fileUploadModal-tab-fromLink");
+        By imageUploadUrlTextbox = By.id("linkFileUpload-input-linkImage");
+        By imageUploadModalFromURLTab = By.id("linkFileUpload-button-uploadWithLink");
         By searchImageTextbox = By.id("galleryView-input-searchImage");
         By removeImageButton = By.id("imageCard-button-removeImage");
-        By errorPageSpanTitle = By.id("errorPage-span-title");
+        By invalidUrlErrorPageTitle = By.id("errorPage-span-title");
     }
 
     interface HomePage {
@@ -26,6 +26,6 @@ public interface Constants {
         By usernameTextbox = By.id("loginPage-input-username");
         By passwordTextbox = By.id("loginPage-input-password");
         By loginButton = By.id("loginPage-button-login");
-        By errorMessageToast = By.cssSelector(".toast.toast-error");
+        By loginPageErrorMessageToast = By.cssSelector(".toast.toast-error");
     }
 }

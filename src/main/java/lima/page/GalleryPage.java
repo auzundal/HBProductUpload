@@ -53,17 +53,17 @@ public class GalleryPage extends BasePage  implements Constants.GalleryPage {
 
         }
         String imageList = String.join(" \n ", pathImages);
-        WebElement fileInput = getDriver().findElement(fileUploadButton);
+        WebElement fileInput = getDriver().findElement(imageUploadModalDragAndDrop);
         fileInput.sendKeys(imageList);
     }
 
     public void clickUploadWithUrlTab() {
-        clickAfterWaitForElement(fileUploadFromUrlButton);
+        clickAfterWaitForElement(imageUploadFromUrlButton);
     }
 
     public void uploadImageWithUrl(String urlAdress) {
-        clickAndWrite(fileUploadUrlTextbox, urlAdress);
-        click(fileUploadButtonFromUrl);
+        clickAndWrite(imageUploadUrlTextbox, urlAdress);
+        click(imageUploadModalFromURLTab);
     }
 
     public List<String> searchImageInGalleryPage(String imageName) {
@@ -128,7 +128,7 @@ public class GalleryPage extends BasePage  implements Constants.GalleryPage {
     }
 
     public String invalidUrlErrorMessaage() {
-        WebElement errorPageTitle = waitUntilVisibleByLocator(errorPageSpanTitle);
+        WebElement errorPageTitle = waitUntilVisibleByLocator(invalidUrlErrorPageTitle);
         return errorPageTitle.getText();
     }
 }

@@ -28,8 +28,8 @@ public class LoginPage extends BasePage  implements Constants.LoginPage {
     }
 
     public boolean checkLoginWithWrongCrediantialsToast() {
-        waitUntilVisibleByLocator(errorMessageToast);
+        waitUntilVisibleByLocator(loginPageErrorMessageToast);
         takeScreenShot("checkLoginWithWrongCrediantialsToast");
-        return isElementExists(errorMessageToast);
+        return isElementExists(loginPageErrorMessageToast);
     }
 }

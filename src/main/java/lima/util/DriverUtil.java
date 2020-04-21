@@ -19,10 +19,6 @@ public class DriverUtil {
         return driver;
     }
 
-    //public static void setDriver(WebDriver driver) {
-    // DriverUtil.driver = driver;
-    //}
-
     private static WebDriver driver;
 
     private static RemoteWebDriver remoteWebDriver;

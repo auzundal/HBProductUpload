@@ -1,12 +1,14 @@
 package lima.base;
 
 import io.qameta.allure.Allure;
+import lima.util.DriverUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import static lima.util.DriverUtil.*;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -70,23 +72,6 @@ public class BasePage {
     public void clickAfterWaitForElement(By locator) {
         waitUntilVisibleByLocator(locator);
         click(locator);
-    }
-
-    public void takeScreenShot(String screenShotName) {
-        //File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        try {
-            TakesScreenshot scrShot = ((TakesScreenshot) getDriver());
-            File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
-            InputStream targetStream = new FileInputStream(SrcFile);
-            Allure.attachment(screenShotName, targetStream);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-
-    protected void uploadFile(By input, String path) {
-        waitUntilVisibleByLocator(input).sendKeys(path);
     }
 
     public String getText(By locator) {

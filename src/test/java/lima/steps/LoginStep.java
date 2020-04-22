@@ -4,15 +4,12 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.qameta.allure.Allure;
-import io.qameta.allure.AllureConstants;
-import io.qameta.allure.Step;
 import lima.page.HomePage;
 import lima.page.LoginPage;
 import lima.util.DriverUtil;
 import org.junit.Assert;
+import static lima.util.DriverUtil.*;
 
-import static lima.steps.BaseStep.saveScreenshot;
 import static org.junit.Assert.assertEquals;
 
 public class LoginStep {
@@ -32,14 +29,14 @@ public class LoginStep {
     @Given("^Merchant is on the Login Page$")
     public void catalogUserIsOnTheLoginPage() throws Throwable {
         loginPage.navigateToLogin();
-        loginPage.takeScreenShot("Login url is visited...");
+        takeScreenShot("Login url is visited...");
 
     }
 
     @When("^Merchant login with \"([^\"]*)\" username, \"([^\"]*)\" password$")
     public void merchantLoginWithUsernamePassword(String username, String password) throws Throwable {
         loginPage.login(username, password);
-        loginPage.takeScreenShot("merchantLoginWithUsernamePassword");
+        takeScreenShot("merchantLoginWithUsernamePassword");
     }
 
     @Then("^Merchant should see Access Denied Message$")

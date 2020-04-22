@@ -1,13 +1,18 @@
 package lima.util;
 
+import io.qameta.allure.Allure;
 import lima.base.BasePage;
-import org.openqa.selenium.Platform;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
@@ -21,18 +26,21 @@ public class DriverUtil {
 
     private static WebDriver driver;
 
-    private static RemoteWebDriver remoteWebDriver;
 
     public static void setUp() {
+        String grid = System.getProperty("grid");
         boolean remote = false;
+        if (grid != null) {
+            remote = Boolean.parseBoolean(grid);
+        }
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
 
         if (remote) {
             try {
-                driver = new RemoteWebDriver(new URL("http://192.168.1.29:4444/wd/hub"), options);
-                //driver = new RemoteWebDriver(new URL("http://192.168.21.230:4444/wd/hub"), options);
+                String gridIP = System.getProperty("gridIP");
+                driver = new RemoteWebDriver(new URL("http://"+gridIP+":4444/wd/hub"), options);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -57,5 +65,15 @@ public class DriverUtil {
         return null;
     }
 
+    public static void takeScreenShot(String screenShotName) {
+        try {
+            TakesScreenshot scrShot = ((TakesScreenshot) getDriver());
+            File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+            InputStream targetStream = new FileInputStream(SrcFile);
+            Allure.attachment(screenShotName, targetStream);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
 }

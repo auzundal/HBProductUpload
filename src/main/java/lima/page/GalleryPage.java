@@ -1,7 +1,6 @@
 package lima.page;
 
 import lima.base.BasePage;
-import lima.constants.Constants;
 import lima.util.FileUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

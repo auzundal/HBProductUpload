@@ -1,6 +1,7 @@
 package lima.page;
 
 import lima.base.BasePage;
+import lima.util.DriverUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -12,7 +13,7 @@ public class LoginPage extends BasePage {
     }
 
     public void navigateToLogin() {
-        getDriver().get("http://192.168.55.112:30011/login");
+        getDriver().get(DriverUtil.getBaseUrl() + "/login");
     }
 
     public void login(String username, String password) {

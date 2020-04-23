@@ -10,8 +10,17 @@ import java.lang.reflect.InvocationTargetException;
 public class DriverUtil {
 
     private static WebDriver driver;
+    private static String baseUrl;
 
     public static void setUp() {
+        String baseUrl = System.getProperty("baseUrl");
+        if (baseUrl == null) {
+            throw new IllegalArgumentException("Base url should not be null");
+        } else {
+            setBaseUrl(baseUrl);
+        }
+
+
         System.setProperty("webdriver.chrome.driver", "src/main/resources/webdriver/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -32,4 +41,11 @@ public class DriverUtil {
     }
 
 
+    public static String getBaseUrl() {
+        return baseUrl;
+    }
+
+    private static void setBaseUrl(String baseUrl) {
+        DriverUtil.baseUrl = baseUrl;
+    }
 }

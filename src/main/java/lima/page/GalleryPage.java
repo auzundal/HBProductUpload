@@ -1,6 +1,7 @@
 package lima.page;
 
 import lima.base.BasePage;
+import lima.util.DriverUtil;
 import lima.util.FileUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +18,7 @@ public class GalleryPage extends BasePage {
     }
 
     public void navigateToGallery() {
-        getDriver().get("http://192.168.55.112:30011/v2/gallery");
+        getDriver().get(DriverUtil.getBaseUrl() + "/v2/gallery");
     }
 
 

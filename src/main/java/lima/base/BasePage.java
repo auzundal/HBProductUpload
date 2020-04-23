@@ -1,11 +1,22 @@
 package lima.base;
 
+import io.qameta.allure.Allure;
+import lima.util.DriverUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import static lima.util.DriverUtil.*;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class BasePage {
 
@@ -29,6 +40,7 @@ public class BasePage {
     protected void clickAndWrite(By by, String value) {
         WebElement element = waitUntilVisibleByLocator(by);
         element.click();
+        takeScreenShot("Sendkeys");
         element.sendKeys(value);
 
     }
@@ -44,6 +56,8 @@ public class BasePage {
 
     protected void click(By locator) {
         WebElement element = waitUntilVisibleByLocator(locator);
+//        WebElement element = getDriver().findElement(locator);
+        takeScreenShot("Click");
         element.click();
 
     }

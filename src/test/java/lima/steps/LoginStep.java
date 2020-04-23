@@ -1,13 +1,14 @@
 package lima.steps;
 
-import cucumber.api.java.Before;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.Before;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import lima.page.HomePage;
 import lima.page.LoginPage;
 import lima.util.DriverUtil;
 import org.junit.Assert;
+import static lima.util.DriverUtil.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,15 +25,18 @@ public class LoginStep {
 
     }
 
+
     @Given("^Merchant is on the Login Page$")
     public void catalogUserIsOnTheLoginPage() throws Throwable {
         loginPage.navigateToLogin();
+        takeScreenShot("Login url is visited...");
+
     }
 
     @When("^Merchant login with \"([^\"]*)\" username, \"([^\"]*)\" password$")
     public void merchantLoginWithUsernamePassword(String username, String password) throws Throwable {
         loginPage.login(username, password);
-
+        takeScreenShot("merchantLoginWithUsernamePassword");
     }
 
     @Then("^Merchant should see Access Denied Message$")

@@ -6,6 +6,7 @@ import lima.util.FileUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import static lima.constants.Constants.GalleryPage.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,25 +24,25 @@ public class GalleryPage extends BasePage {
 
 
     public String getTitle() {
-        return getText(By.id("galleryView-div-showTitle"));
+        return getText(galleryViewTitle);
 
     }
 
     public boolean checkEmptyGalleryPage() {
-        waitUntilVisibleByLocator(By.id("galleryView-button-searchNoImageUpload"));
-        return isElementExists(By.id("galleryView-button-searchNoImageUpload"));
+        waitUntilVisibleByLocator(noImageUploadButton);
+        return isElementExists(noImageUploadButton);
     }
 
     public void clickUploadImageButton() {
-        clickAfterWaitForElement(By.id("galleryView-button-uploadImage"));
+        clickAfterWaitForElement(imageUploadButton);
     }
 
     public void clickUploadImageWithGalleryImage() {
-        click(By.id("galleryView-button-uploadImage"));
+        click(imageUploadButton);
     }
 
     public void clickUploadImageWithoutGalleryImage() {
-        click(By.id("galleryView-button-searchNoImageUpload"));
+        click(noImageUploadButton);
     }
 
     public void uploadImageFile(List<String> images) {
@@ -51,26 +52,26 @@ public class GalleryPage extends BasePage {
 
         }
         String imageList = String.join(" \n ", pathImages);
-        WebElement fileInput = getDriver().findElement(By.id("fileUploadModal-dragAndDrop-imageUpload"));
+        WebElement fileInput = getDriver().findElement(imageUploadModalDragAndDrop);
         fileInput.sendKeys(imageList);
     }
 
     public void clickUploadWithUrlTab() {
-        clickAfterWaitForElement(By.id("fileUploadModal-tab-fromLink"));
+        clickAfterWaitForElement(imageUploadFromUrlButton);
     }
 
     public void uploadImageWithUrl(String urlAdress) {
-        clickAndWrite(By.id("linkFileUpload-input-linkImage"), urlAdress);
-        click(By.id("linkFileUpload-button-uploadWithLink"));
+        clickAndWrite(imageUploadUrlTextbox, urlAdress);
+        click(imageUploadModalFromURLTab);
     }
 
     public void searchImageInGalleryPage(List<String> imageList) {
 
         for (String image : imageList) {
 
-            waitUntilVisibleByLocator(By.id("galleryView-input-searchImage"));
-            clickAndWrite(By.id("galleryView-input-searchImage"), image);
-            getDriver().findElement(By.id("galleryView-input-searchImage")).clear();
+            waitUntilVisibleByLocator(searchImageTextbox);
+            clickAndWrite(searchImageTextbox, image);
+            getDriver().findElement(searchImageTextbox).clear();
         }
     }
 
@@ -85,7 +86,7 @@ public class GalleryPage extends BasePage {
 
         for (String imageName : imageList) {
             WebElement imageCard = hover(By.cssSelector("div[title='" + imageName + "']"));
-            imageCard.findElement(By.id("imageCard-button-removeImage")).click();
+            imageCard.findElement(removeImageButton).click();
             click(By.xpath("//*[@id='product-app']/div/div[2]/div/div[2]/button[2]"));
         }
     }
@@ -109,10 +110,8 @@ public class GalleryPage extends BasePage {
     }
 
     public String invalidUrlErrorMessaage() {
-        WebElement errorPageTitle = waitUntilVisibleByLocator(By.id("errorPage-span-title"));
+        WebElement errorPageTitle = waitUntilVisibleByLocator(invalidUrlErrorPageTitle);
         return errorPageTitle.getText();
     }
-
-
 }
 

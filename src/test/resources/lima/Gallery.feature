@@ -1,4 +1,4 @@
-#@Gallery feature
+@Gallery-feature
 Feature: This feature contains gallery page's and its components' test
 
   Background:
@@ -7,12 +7,12 @@ Feature: This feature contains gallery page's and its components' test
     When Merchant should see "Sprint-85" username as on Home Page
     Then Merchant go to gallery page
 
-  @check-gallery-page-opening
+  @Gallery-feature-check-gallery-page-opening
   Scenario: Check gallery page opening
     Then Merchant should see title as "Görsel Galerisi" in Gallery Page
     Then I see there is no image in gallery page
 
-  @single-image-upload-success-with-no-image
+  @Gallery-feature-single-image-upload-success-with-no-image
   Scenario: Upload a single image success upload in no image page
     Given Merchant should see title as "Görsel Galerisi" in Gallery Page
     And Merchant open image upload modal in gallery with no images
@@ -22,7 +22,7 @@ Feature: This feature contains gallery page's and its components' test
       | name     | message           |
       | emir.jpg | Yükleme başarılı! |
 
-  @single-image-upload-success-with-image
+  @Gallery-feature-single-image-upload-success-with-image
   Scenario: Upload a single image success with upload my computer
     Given Merchant should see title as "Görsel Galerisi" in Gallery Page
     And Merchant open image upload modal in gallery with images
@@ -34,7 +34,7 @@ Feature: This feature contains gallery page's and its components' test
       | Single.jpg | Yükleme başarılı! |
 
 
-  @multiple-image-upload-success-with-image
+  @Gallery-feature-multiple-image-upload-success-with-image
   Scenario: Upload multiple image with upload my computer
     Given Merchant should see title as "Görsel Galerisi" in Gallery Page
     And Merchant open image upload modal in gallery with images
@@ -49,7 +49,7 @@ Feature: This feature contains gallery page's and its components' test
       | image11s.jpg   | Yükleme başarılı! |
 
 
-  @single-image-upload-with-fail-image
+  @Gallery-feature-single-image-upload-with-fail-image
   Scenario: Upload a single image fail with upload my computer
     Given Merchant should see title as "Görsel Galerisi" in Gallery Page
     And Merchant open image upload modal in gallery with images
@@ -60,7 +60,7 @@ Feature: This feature contains gallery page's and its components' test
       | name          | message               |
       | FailResim.jpg | Fotoğraf yüklenemedi. |
 
-  @image-upload-invalid-files-upload-error-message
+  @Gallery-feature-image-upload-invalid-files-upload-error-message
   Scenario: Upload an invalid file via upload my computer
     Given Merchant should see title as "Görsel Galerisi" in Gallery Page
     And Merchant open image upload modal in gallery with images
@@ -70,7 +70,7 @@ Feature: This feature contains gallery page's and its components' test
     Then These files are invalid format toast error message
 
 
-  @image-upload-success-with-URL
+  @Gallery-feature-image-upload-success-with-URL
   Scenario: Upload an image success with URL
     Given Merchant click upload image button in gallery page
     When Merchant click upload with URL tab
@@ -78,39 +78,34 @@ Feature: This feature contains gallery page's and its components' test
     Then These images are available in Image Upload Page:
       | 1.jpg |
 
-  @image-upload-fail-with-URL
+  @Gallery-feature-image-upload-fail-with-URL
   Scenario: Upload an image fail with URL
     Given Merchant click upload image button in gallery page
     When Merchant click upload with URL tab
     When  Merchant upload "İnvalid URL" URL from Image Upload Page
     Then Merchant should see invalid URL fail message
 
-  @Single-image-search-and-delete
-  Scenario Outline: Delete Single Image
+  @Gallery-feature-Single-image-delete
+  Scenario: Delete Single Image
+    And Merchant select images:
+      | valid_kedi.jpg |
+    And Merchant delete images:
+      | valid_kedi.jpg |
+    Then Merchant search image in gallery page:
+      | valid_kedi |
+
+
+  @Gallery-feature-multiple-image-delete
+  Scenario Delete multiple Images
     And Merchant select images:
       | valid_kedi.jpg |
       | Single.jpg     |
     And Merchant delete images:
       | valid_kedi.jpg |
       | Single.jpg     |
-    Then Merchant search "<imageName>" in search field in gallery page
-    Examples:
-      | imageName         |
-      | valid_kedi,Single |
-
-
-  @multiple-image-select-and-delete
-  Scenario Outline: Delete multiple Images
-    And Merchant select images:
-      | valid_kedi.jpg |
-      | Single.jpg     |
-    And Merchant delete images:
-      | valid_kedi.jpg |
-      | Single.jpg     |
-    Then Merchant search "<imageName>" in search field in gallery page
-    Examples:
-      | imageName         |
-      | valid_kedi,Single |
+    Then Merchant search image in gallery page:
+      | valid_kedi |
+      | Single     |
 
 
   Scenario: Search an image that is in merchant's gallery

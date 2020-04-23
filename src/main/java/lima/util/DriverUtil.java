@@ -25,9 +25,17 @@ public class DriverUtil {
     }
 
     private static WebDriver driver;
+    private static String baseUrl;
 
 
     public static void setUp() {
+        String baseUrl = System.getProperty("baseUrl");
+        if (baseUrl == null) {
+            throw new IllegalArgumentException("Base url should not be null");
+        } else {
+            setBaseUrl(baseUrl);
+        }
+
         String grid = System.getProperty("grid");
         boolean remote = false;
         if (grid != null) {
@@ -76,4 +84,11 @@ public class DriverUtil {
         }
     }
 
+    public static String getBaseUrl() {
+        return baseUrl;
+    }
+
+    private static void setBaseUrl(String baseUrl) {
+        DriverUtil.baseUrl = baseUrl;
+    }
 }

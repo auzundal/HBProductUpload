@@ -3,6 +3,7 @@ package lima.page;
 import io.qameta.allure.Step;
 import lima.base.BasePage;
 import lima.constants.Constants;
+import lima.util.DriverUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import static lima.constants.Constants.LoginPage.*;
@@ -17,9 +18,8 @@ public class LoginPage extends BasePage {
 
     @Step
     public void navigateToLogin() {
-        getDriver().get(rootMainPageloginURL);
+        getDriver().get(DriverUtil.getBaseUrl() + "/login");
         takeScreenShot("Address is visited...");
-
     }
 
     public void login(String username, String password) {

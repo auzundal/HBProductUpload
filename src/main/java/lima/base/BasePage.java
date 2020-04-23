@@ -38,7 +38,7 @@ public class BasePage {
     }
 
     protected void clickAndWrite(By by, String value) {
-        WebElement element = getDriver().findElement(by);
+        WebElement element = waitUntilVisibleByLocator(by);
         element.click();
         takeScreenShot("Sendkeys");
         element.sendKeys(value);

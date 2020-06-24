@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 public interface Constants {
     interface GalleryPage {
-        String imageGalleryURL = ("http://192.168.55.112:30011/v2/gallery");
+        String imageGalleryURL = ("http://root-portal.preprod.hepsiburada.com/v2/gallery");
         By galleryViewTitle = By.id("galleryView-div-showTitle");
         By noImageUploadButton = By.id("galleryView-button-searchNoImageUpload");
         By imageUploadButton = By.id("galleryView-button-uploadImage");
@@ -18,11 +18,12 @@ public interface Constants {
     }
 
     interface HomePage {
-        By merchantTooltip = By.cssSelector("[data-for='toolTip-merchant']");
+        By merchantTooltip = By.xpath("//div[@id='toolTip-merchant']");
+        By merchantUsernameImage = By.xpath("//a[@data-for='toolTip-merchant']");
     }
 
     interface LoginPage {
-        String rootMainPageloginURL = ("http://192.168.55.112:30011/login");
+        String rootMainPageloginURL = ("http://root-portal.preprod.hepsiburada.com");
         By usernameTextbox = By.id("loginPage-input-username");
         By passwordTextbox = By.id("loginPage-input-password");
         By loginButton = By.id("loginPage-button-login");

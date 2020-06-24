@@ -11,15 +11,11 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-
     public void hoverMerchantName() throws InterruptedException {
-        Thread.sleep(4000);
-        hover(merchantTooltip);
-
-
+        hover(merchantUsernameImage);
     }
 
     public String getMerchantName() {
-        return getDriver().findElement(By.id("toolTip-merchant")).getText();
+        return getDriver().findElement(merchantTooltip).getText();
     }
 }

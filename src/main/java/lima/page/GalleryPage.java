@@ -91,7 +91,6 @@ public class GalleryPage extends BasePage {
 
         for (String imageName : imageList) {
 
-            //click(By.cssSelector("div[title='" + imageName + "'] > div > span"));
             click(By.xpath("//span[contains(text(),'" + imageName + "')]"));
         }
 

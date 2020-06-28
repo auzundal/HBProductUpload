@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class FileUtil {
 
-    public static String IMAGE_UPLOAD_FOLDER = "C:/Users/eanyig/Desktop/Lima/data/sample/imageUpload";
+    public static String IMAGE_UPLOAD_FOLDER = "C:/imageUpload";
 
     public static List<String> getValidImageNames() {
         File folder = new File(IMAGE_UPLOAD_FOLDER);

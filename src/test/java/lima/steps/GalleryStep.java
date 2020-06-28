@@ -56,6 +56,17 @@ public class GalleryStep {
         galleryPage.uploadImageWithUrl(UrlAdress);
     }
 
+    @Given("^Merchant search \"([^\"]*)\" in search field in gallery page$")
+    public void merchantSearchInSearchFieldInGalleryPage(String imageName) throws Throwable {
+        galleryPage.searchImageInGalleryPage(imageName);
+        Thread.sleep(2000);
+    }
+
+    @Then("^Merchant should see only see images that has \"([^\"]*)\" word contained in image name$")
+    public void merchantShouldSeeOnlySeeImagesThatHasWordContainedInImageName(String searchResultImageName) throws Throwable {
+        galleryPage.searchImageResultInGalleryPage();
+    }
+
 
     @When("^Merchant upload files in Image Upload Page:$")
     public void merchantUploadFilesInImageUploadPage(List<String> images) throws Throwable {
@@ -118,9 +129,8 @@ public class GalleryStep {
         galleryPage.deleteImageTrashButtonClick(images);
     }
 
-
-    @Then("^Merchant search image in gallery page:$")
-    public void merchantSearchImageInGalleryPage(List<String> images) throws Throwable {
-        galleryPage.searchImageInGalleryPage(images);
+    @Given("^Merchant search \"([^\"]*)\" in search field in Gallery Page$")
+    public void merchantSearchImageInGalleryPage(String imageName) throws Throwable {
+        galleryPage.searchImageInGalleryPage(imageName);
     }
 }

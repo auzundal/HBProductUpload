@@ -15,6 +15,7 @@ public interface Constants {
         By searchImageTextbox = By.id("galleryView-input-searchImage");
         By removeImageButton = By.id("imageCard-button-removeImage");
         By invalidUrlErrorPageTitle = By.id("errorPage-span-title");
+        
     }
 
     interface HomePage {

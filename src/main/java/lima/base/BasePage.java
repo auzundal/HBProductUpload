@@ -22,8 +22,8 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, 10);
-        this.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver, 60);
+        this.driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         actions = new Actions(driver);
     }
 

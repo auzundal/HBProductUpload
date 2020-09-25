@@ -1,12 +1,18 @@
-#@Single product add feature
-Feature: SingleProduct
+#@SingleProduct-feature
+Feature: This feature contains single product page's and its components' test
 
+  Background:
+    Given Merchant is on the Login Page
+    When Merchant login with "Sprint-100" username, "Test123!" password
+    When Merchant should see "Sprint-100" username as on Home Page
+    Then Merchant go to add product page
+
+  @add-single-product
+  Scenario: Check add single product page opening
+    Then Merchant should see title as "Ürün Ekle" in Single Product Page
+
+@Single-product-add-feature
 Scenario: Add new product and Check
-Given Merchant is on the Login Page
-When Merchant login with "TEST-MPOP" username, "Test123!" password
-Then Merchant should see username as "TEST-MPOP" on Home Page
-
-And Merchant go to add product page
 And Merchant click add single product tab
 Then Merchant should see add product modal
 
@@ -31,3 +37,4 @@ Then Merchant should see product description page
 When Merchant should write description "test"
 And Merchant should click approval of add single product button
 Then Merchant should see successful message
+

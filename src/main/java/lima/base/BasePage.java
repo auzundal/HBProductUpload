@@ -7,10 +7,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static lima.constants.Constants.Generic.genericComboBoxText;
-import static lima.util.DriverUtil.*;
-
 import java.util.concurrent.TimeUnit;
+
+import static lima.constants.Constants.Generic.genericComboBoxText;
+import static lima.util.DriverUtil.takeScreenShot;
 
 public class BasePage {
 
@@ -46,9 +46,26 @@ public class BasePage {
         return getDriver().findElements(locator).size() == 1;
     }
 
+    protected WebElement waitUntilPresenceByLocator(By locator) {
+
+        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+
+    protected WebElement waitUntilClickableByLocator(By locator) {
+
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    protected void scrollToElement(By locator) {
+        WebElement element = waitUntilPresenceByLocator(locator);
+        Actions scrollToElement = new Actions(driver);
+        scrollToElement.moveToElement(element).build().perform();
+        waitUntilClickableByLocator(locator);
+    }
+
     protected void click(By locator) {
-        WebElement element = waitUntilVisibleByLocator(locator);
-        takeScreenShot("Click");
+        WebElement element = waitUntilPresenceByLocator(locator);
+        waitUntilClickableByLocator(locator);
         element.click();
     }
 

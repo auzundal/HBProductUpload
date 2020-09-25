@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import static org.junit.Assert.assertEquals;
-import static lima.constants.Constants.AddSingleProduct.*;
+import static lima.constants.Constants.SingleProductPage.*;
 
 public class SingleProductPage extends BasePage {
     public SingleProductPage(WebDriver driver) {
@@ -106,5 +106,8 @@ public class SingleProductPage extends BasePage {
     public void checkSuccessfulMessage() {
         String actualMessage = getText(successfulMessageLabel);
         assertEquals(addProductFailMessage, successfulMessage, actualMessage);
+    }
+    public String getTitle() {
+        return getText(addProductPageViewTitle);
     }
 }

@@ -5,7 +5,7 @@ Feature: Login
   Scenario: User login successful
     Given Merchant is on the Login Page
     When Merchant login with "Sprint-100" username, "Test123!" password
-    Then Merchant should see "Sprint-100" username as on Home Page
+    Then Merchant should see username as "Sprint-100" on Home Page
 
   @login-feature-ldap-unsuccessful
   Scenario: User login failed

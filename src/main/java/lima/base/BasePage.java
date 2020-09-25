@@ -1,22 +1,16 @@
 package lima.base;
 
-import io.qameta.allure.Allure;
-import lima.util.DriverUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static lima.constants.Constants.Generic.genericComboBoxText;
 import static lima.util.DriverUtil.*;
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.*;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.concurrent.TimeUnit;
 
 public class BasePage {
 
@@ -26,10 +20,10 @@ public class BasePage {
 
     private Actions actions;
 
-
     public BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
+        this.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         actions = new Actions(driver);
     }
 
@@ -42,11 +36,9 @@ public class BasePage {
         element.click();
         takeScreenShot("Sendkeys");
         element.sendKeys(value);
-
     }
 
     protected WebElement waitUntilVisibleByLocator(By locator) {
-
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
@@ -56,12 +48,9 @@ public class BasePage {
 
     protected void click(By locator) {
         WebElement element = waitUntilVisibleByLocator(locator);
-//        WebElement element = getDriver().findElement(locator);
         takeScreenShot("Click");
         element.click();
-
     }
-
 
     public WebElement hover(By locator) {
         WebElement webElement = waitUntilVisibleByLocator(locator);
@@ -78,7 +67,18 @@ public class BasePage {
         return waitUntilVisibleByLocator(locator).getText();
     }
 
+    protected WebElement findElement(By locator) {
+        return getDriver().findElement(locator);
+    }
 
+    protected WebElement waitUntilEnableByLocator(By locator) {
+        driver.switchTo().parentFrame();
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    protected void setDropdownList(String value, By areaPath, By listItemPath) {
+        clickAfterWaitForElement(areaPath);
+        clickAndWrite(genericComboBoxText, value);
+        clickAfterWaitForElement(listItemPath);
+    }
 }
-
-

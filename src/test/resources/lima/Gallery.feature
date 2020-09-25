@@ -5,7 +5,7 @@ Feature: This feature contains gallery page's and its components' test
     Given Merchant is on the Login Page
     When Merchant login with "Sprint-100" username, "Test123!" password
     When Merchant should see "Sprint-100" username as on Home Page
-    Then Merchant go to gallery page
+  #  Then Merchant go to gallery page
 
   @check-gallery-page-opening
   Scenario: Check gallery page opening
@@ -148,6 +148,21 @@ Feature: This feature contains gallery page's and its components' test
     Then first image should be "1.jpg"
     And Merchant click sort arrow
     Then Merchant should see defauld sort button
+
+
+  @single-image-upload-success
+  Scenario: Upload a single image success upload
+
+    When Merchant click product process button
+    And Merchant click gallery process button
+    Then Merchant should see title as "Görsel Galerisi" in Gallery Page
+
+    When Merchant click upload image button in gallery page
+    And  Merchant upload files in Image Upload Page:
+      | Vidar22.jpg |
+    And Merchant check uploaded image name as "Vidar22.jpg"
+    Then Merchant check uploaded image message as "Yükleme başarılı!"
+
 
 
 

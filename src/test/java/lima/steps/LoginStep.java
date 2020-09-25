@@ -19,35 +19,30 @@ public class LoginStep {
 
     @Before
     public void setup() {
-
         loginPage = DriverUtil.createClass(LoginPage.class);
         homePage = DriverUtil.createClass(HomePage.class);
-
     }
 
-
     @Given("^Merchant is on the Login Page$")
-    public void catalogUserIsOnTheLoginPage() throws Throwable {
+    public void catalogUserIsOnTheLoginPage() {
         loginPage.navigateToLogin();
         takeScreenShot("Login url is visited...");
-
     }
 
     @When("^Merchant login with \"([^\"]*)\" username, \"([^\"]*)\" password$")
-    public void merchantLoginWithUsernamePassword(String username, String password) throws Throwable {
+    public void merchantLoginWithUsernamePassword(String username, String password) {
         loginPage.login(username, password);
         takeScreenShot("merchantLoginWithUsernamePassword");
     }
 
     @Then("^Merchant should see Access Denied Message$")
-    public void merchantShouldSeeAccessDeniedMessage() throws Throwable {
+    public void merchantShouldSeeAccessDeniedMessage() {
         Assert.assertTrue("Hatalı giriş", loginPage.checkLoginWithWrongCrediantialsToast());
     }
 
-    @When("^Merchant should see \"([^\"]*)\" username as on Home Page$")
+    @Then("^Merchant should see username as \"([^\"]*)\" on Home Page$")
     public void merchantShouldSeeUsernameAsOnHomePage(String username) throws Throwable {
         homePage.hoverMerchantName();
         assertEquals("Wrong merchant name", username, homePage.getMerchantName());
     }
-
 }

@@ -14,6 +14,8 @@ import org.openqa.selenium.By;
 
 import java.util.List;
 
+import static lima.constants.Constants.GalleryPage.imageMessageLabel;
+import static lima.constants.Constants.GalleryPage.imageNameLabel;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -71,6 +73,7 @@ public class GalleryStep {
     @When("^Merchant upload files in Image Upload Page:$")
     public void merchantUploadFilesInImageUploadPage(List<String> images) throws Throwable {
         galleryPage.uploadImageFile(images);
+        Thread.sleep(5000);
 
     }
 
@@ -132,5 +135,17 @@ public class GalleryStep {
     @Given("^Merchant search \"([^\"]*)\" in search field in Gallery Page$")
     public void merchantSearchImageInGalleryPage(String imageName) throws Throwable {
         galleryPage.searchImageInGalleryPage(imageName);
+    }
+
+    @Then("Merchant check uploaded image message as {string}")
+    public void merchantCheckUploadedImageAs(String uploadedImageMessage) {
+        String checkImageMessage = galleryPage.getText(imageMessageLabel);
+        Assert.assertEquals(uploadedImageMessage, checkImageMessage);
+    }
+
+    @And("Merchant check uploaded image name as {string}")
+    public void merchantCheckUploadedImageNameAs(String uploadedImageName) {
+        String checkImageName = galleryPage.getText(imageNameLabel);
+        Assert.assertEquals(uploadedImageName, checkImageName);
     }
 }

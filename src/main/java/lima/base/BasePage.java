@@ -81,5 +81,4 @@ public class BasePage {
         clickAndWrite(genericComboBoxText, value);
         clickAfterWaitForElement(listItemPath);
     }
-
 }

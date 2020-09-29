@@ -13,6 +13,8 @@ import java.util.Date;
 import java.util.UUID;
 
 import static lima.constants.Constants.Generic.dateFormat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 public class SingleProductStep {
 
@@ -132,5 +134,10 @@ public class SingleProductStep {
     @Then("^Merchant should see successful message")
     public void checkSuccessfulMessage() {
         singleproductpage.checkSuccessfulMessage();
+    }
+
+    @Then("^Merchant should see title as \"([^\"]*)\" in Single Product Page$")
+    public void merchantShouldSeeTitleAsInGalleryPage(String title) throws Throwable {
+        assertThat(singleproductpage.getTitle(), is(title));
     }
 }

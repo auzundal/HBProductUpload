@@ -41,7 +41,7 @@ public interface Constants {
         By loginPageErrorMessageToast = By.cssSelector(".toast.toast-error");
     }
 
-    interface AddSingleProduct {
+    interface SingleProductPage {
 
         String imageUploadTempPath = System.getProperty("imagePath");
         String addProductPageLink = "/v2/products/add";
@@ -72,5 +72,6 @@ public interface Constants {
         By successfulMessageLabel = By.className("toastNotification_title_1rHVe");
         String successfulMessage = "Ürününüz onaya gönderildi";
         String addProductFailMessage = "Ürün ekleme basarisiz";
+        By addProductPageViewTitle = By.xpath("//span[contains(text(),'Ürün Ekle')]");
     }
 }

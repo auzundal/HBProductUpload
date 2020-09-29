@@ -7,10 +7,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static lima.constants.Constants.Generic.genericComboBoxText;
-import static lima.util.DriverUtil.*;
-
 import java.util.concurrent.TimeUnit;
+
+import static lima.constants.Constants.Generic.genericComboBoxText;
+import static lima.util.DriverUtil.takeScreenShot;
 
 public class BasePage {
 
@@ -22,8 +22,8 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, 10);
-        this.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver, 60);
+        this.driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         actions = new Actions(driver);
     }
 
@@ -31,8 +31,9 @@ public class BasePage {
         return driver;
     }
 
-    protected void clickAndWrite(By by, String value) {
-        WebElement element = waitUntilVisibleByLocator(by);
+    protected void clickAndWrite(By locator, String value) {
+        WebElement element = waitUntilPresenceByLocator(locator);
+        waitUntilVisibleByLocator(locator);
         element.click();
         takeScreenShot("Sendkeys");
         element.sendKeys(value);
@@ -46,9 +47,26 @@ public class BasePage {
         return getDriver().findElements(locator).size() == 1;
     }
 
+    protected WebElement waitUntilPresenceByLocator(By locator) {
+
+        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+
+    protected WebElement waitUntilClickableByLocator(By locator) {
+
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    protected void scrollToElement(By locator) {
+        WebElement element = waitUntilPresenceByLocator(locator);
+        Actions scrollToElement = new Actions(driver);
+        scrollToElement.moveToElement(element).build().perform();
+        waitUntilClickableByLocator(locator);
+    }
+
     protected void click(By locator) {
-        WebElement element = waitUntilVisibleByLocator(locator);
-        takeScreenShot("Click");
+        WebElement element = waitUntilPresenceByLocator(locator);
+        waitUntilVisibleByLocator(locator);
         element.click();
     }
 
@@ -77,8 +95,8 @@ public class BasePage {
     }
 
     protected void setDropdownList(String value, By areaPath, By listItemPath) {
-        clickAfterWaitForElement(areaPath);
+        click(areaPath);
         clickAndWrite(genericComboBoxText, value);
-        clickAfterWaitForElement(listItemPath);
+        click(listItemPath);
     }
 }

@@ -73,4 +73,9 @@ public interface Constants {
         String successfulMessage = "Ürününüz onaya gönderildi";
         String addProductFailMessage = "Ürün ekleme basarisiz";
     }
+
+    interface MultipleProduct{
+        By inputUploadFromPc=By.id("fileUploadModal-dragAndDrop-excelUpload");
+        By uploadedExcelFileNames = By.cssSelector("li:nth-child(1) > div.uploadExcelHistory_flexInline_3nvVv > div.uploadExcelHistory_textContainer_3Vhhf > span.uploadExcelHistory_filename_1Mj3-");
+    }
 }

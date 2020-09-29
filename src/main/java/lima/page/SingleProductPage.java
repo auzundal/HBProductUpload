@@ -19,7 +19,7 @@ public class SingleProductPage extends BasePage {
     }
 
     public void clickSingleProductTab() {
-        clickAfterWaitForElement(singleProductTabButton);
+        click(singleProductTabButton);
     }
 
     public boolean checkSingleProductModal() {
@@ -47,9 +47,9 @@ public class SingleProductPage extends BasePage {
     }
 
     public void setProductColor(String color) {
-        clickAfterWaitForElement(colorCombobox);
+        click(colorCombobox);
         clickAndWrite(colorText, color);
-        clickAfterWaitForElement(colorComboItem);
+        click(colorComboItem);
     }
 
     public void uploadProductImage(String image) {
@@ -58,7 +58,7 @@ public class SingleProductPage extends BasePage {
     }
 
     public void setNumberVariant(String numberVariant) {
-        clickAfterWaitForElement(variantText);
+        click(variantText);
         clickAndWrite(variantText, numberVariant);
     }
 
@@ -90,7 +90,6 @@ public class SingleProductPage extends BasePage {
 
     public void setDescription(String description) {
         new Actions(getDriver()).moveToElement(getDriver().findElement(descriptionButton)).click().perform();
-        clickAndWrite(descriptionText, description);
         clickAndWrite(descriptionText, description);
     }
 

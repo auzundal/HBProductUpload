@@ -1,9 +1,6 @@
 package lima.page;
 
-import io.cucumber.java.en.Then;
 import lima.base.BasePage;
-import lima.constants.Constants;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import static lima.constants.Constants.HomePage.*;

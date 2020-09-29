@@ -31,8 +31,9 @@ public class BasePage {
         return driver;
     }
 
-    protected void clickAndWrite(By by, String value) {
-        WebElement element = waitUntilVisibleByLocator(by);
+    protected void clickAndWrite(By locator, String value) {
+        WebElement element = waitUntilPresenceByLocator(locator);
+        waitUntilVisibleByLocator(locator);
         element.click();
         takeScreenShot("Sendkeys");
         element.sendKeys(value);
@@ -65,7 +66,7 @@ public class BasePage {
 
     protected void click(By locator) {
         WebElement element = waitUntilPresenceByLocator(locator);
-        waitUntilClickableByLocator(locator);
+        waitUntilVisibleByLocator(locator);
         element.click();
     }
 
@@ -94,8 +95,8 @@ public class BasePage {
     }
 
     protected void setDropdownList(String value, By areaPath, By listItemPath) {
-        clickAfterWaitForElement(areaPath);
+        click(areaPath);
         clickAndWrite(genericComboBoxText, value);
-        clickAfterWaitForElement(listItemPath);
+        click(listItemPath);
     }
 }

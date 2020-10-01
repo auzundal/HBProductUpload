@@ -16,17 +16,17 @@ public class ExcelRead {
     }
 
     public int waitSecondCalculator(int rowCount){
-        int kaySayi=2,second,waitSecond;
+        int coefficient=2,second,waitSecond;
         if(rowCount<=54){
-            kaySayi=2;
+            coefficient=2;
         }
         else if(rowCount>=55){
-            kaySayi=1;
+            coefficient=1;
         }
         else{
             System.out.println("Error: excelRowCount!");
         }
-         second = rowCount*kaySayi;
+         second = rowCount*coefficient;
          waitSecond = second*1000;
 
         return waitSecond;

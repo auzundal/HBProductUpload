@@ -24,19 +24,24 @@ public class MultipleProductStep {
     }
 
     @When("^Merchant \"([^\"]*)\" excel file upload from pc$")
-    public void fileUploadPc(String filename) throws InterruptedException {
+    public void fileUploadPc(String filename)  {
         multipleproductpage.fileUploadFromPc(filename);
 
     }
 
-    @Then("^I would like to check successfully upload \"([^\"]*)\" file$")
-    public void checkUnSuccessfullyUploadFile(String fileName2){
-        multipleproductpage.uploadedFileName(fileName2);
+    @Then("^Merchant I would like to wait for the \"([^\"]*)\" excel file upload.$")
+    public void secondWait(String filename) throws Exception {
+        multipleproductpage.waitWithSecond(filename);
     }
 
-    @Then("^I would like to wait \"([^\"]*)\" second$")
-    public void secondWait(String second) throws InterruptedException {
-        int s = Integer.parseInt(second);
-        multipleproductpage.waitWithSecond(s);
+    @When("^Merchant I would like going to upload history$")
+    public void goToUploadHistory(){
+        multipleproductpage.goToUploadHistory();
     }
+
+    @Then("^Merchant I would like to check successfully upload \"([^\"]*)\" file$")
+    public void checkUnSuccessfullyUploadFile(String expectedFileName){
+        multipleproductpage.uploadedFileName(expectedFileName);
+    }
+
 }

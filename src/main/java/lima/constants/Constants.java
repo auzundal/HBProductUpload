@@ -76,6 +76,8 @@ public interface Constants {
 
     interface MultipleProduct{
         By inputUploadFromPc=By.id("fileUploadModal-dragAndDrop-excelUpload");
-        By uploadedExcelFileNames = By.cssSelector("li:nth-child(1) > div.uploadExcelHistory_flexInline_3nvVv > div.uploadExcelHistory_textContainer_3Vhhf > span.uploadExcelHistory_filename_1Mj3-");
+        By showAllOfThem = By.cssSelector("div.uploadExcelHistory_showAll_2hLaP");
+        By successfullyTab = By.cssSelector("div.uploadExcelHistory_tab_3hwGz:nth-child(3)");
+        By uploadedFileNameInSuccesfullyTab = By.cssSelector("li:nth-child(1) > div > div > span.uploadExcelHistory_filename_1Mj3-");
     }
 }

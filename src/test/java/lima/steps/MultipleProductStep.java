@@ -26,12 +26,11 @@ public class MultipleProductStep {
     @When("^Merchant \"([^\"]*)\" excel file upload from pc$")
     public void fileUploadPc(String filename)  {
         multipleproductpage.fileUploadFromPc(filename);
-
     }
 
-    @Then("^Merchant I would like to wait for the \"([^\"]*)\" excel file upload.$")
-    public void secondWait(String filename) throws Exception {
-        multipleproductpage.waitWithSecond(filename);
+    @When("^Merchant I would like to upload successfully icon$")
+    public void waitUploadSuccessIcon()  {
+        multipleproductpage.waitUpload();
     }
 
     @When("^Merchant I would like going to upload history$")
@@ -43,5 +42,4 @@ public class MultipleProductStep {
     public void checkUnSuccessfullyUploadFile(String expectedFileName){
         multipleproductpage.uploadedFileName(expectedFileName);
     }
-
 }

@@ -9,6 +9,6 @@ Feature: This feature contains multiple product add page's and its components' t
   Scenario: Merchant add a multiple product
     Given Merchant go to add multiple page
     When Merchant "record55.xlsx" excel file upload from pc
-    Then Merchant I would like to wait for the "record55.xlsx" excel file upload.
+    When Merchant I would like to upload successfully icon
     When Merchant I would like going to upload history
     Then Merchant I would like to check successfully upload "record55.xlsx" file

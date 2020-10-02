@@ -1,6 +1,7 @@
 package lima.base;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static lima.constants.Constants.Generic.genericComboBoxText;
 import static lima.util.DriverUtil.*;
 
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 public class BasePage {
@@ -46,6 +48,12 @@ public class BasePage {
     public boolean isElementDisplayed(By by) {
 
         return findElement(by).isDisplayed();
+    }
+
+    protected boolean waitUntilInvisibleByLocator(By locator, int timeout) {
+        WebDriverWait waitPorgressBar = new WebDriverWait(driver, timeout);
+        waitPorgressBar.ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
+        return waitPorgressBar.until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
     protected WebElement waitUntilVisibleByLocator(By locator) {

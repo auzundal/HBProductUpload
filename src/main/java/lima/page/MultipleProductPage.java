@@ -3,16 +3,12 @@ package lima.page;
 import io.qameta.allure.Step;
 import lima.base.BasePage;
 import lima.util.DriverUtil;
-import lima.util.ExcelRead;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import static lima.constants.Constants.MultipleProduct.*;
 public class MultipleProductPage extends BasePage {
     private String excelPath = System.getProperty("user.dir")+"\\data\\sample\\excelUpload\\";
-
-    ExcelRead rowCountObj = new ExcelRead();
 
     public MultipleProductPage(WebDriver driver) {
         super(driver);
@@ -26,10 +22,8 @@ public class MultipleProductPage extends BasePage {
         uploadMedia(inputUploadFromPc,excelPath.concat(filename));
     }
 
-    public void waitWithSecond(String filename) throws Exception {
-        int rowCount = rowCountObj.excelRowCount(excelPath.concat(filename));
-        int waitSecond = rowCountObj.waitSecondCalculator(rowCount);
-        Thread.sleep(waitSecond);
+    public void waitUpload(){
+        waitUntilInvisibleByLocator(uploadProgressBar,120);
     }
 
     public void goToUploadHistory(){

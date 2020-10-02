@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 import static lima.constants.Constants.MultipleProduct.*;
 public class MultipleProductPage extends BasePage {
-    private String excelPath = System.getProperty("user.dir")+"\\data\\sample\\excelUpload\\";
+    private String excelPath = System.getProperty("excelUploadPath");
 
     public MultipleProductPage(WebDriver driver) {
         super(driver);

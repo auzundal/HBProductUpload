@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import static org.junit.Assert.assertEquals;
-import static lima.constants.Constants.AddSingleProduct.*;
+import static lima.constants.Constants.SingleProductPage.*;
 
 public class SingleProductPage extends BasePage {
     public SingleProductPage(WebDriver driver) {
@@ -19,7 +19,7 @@ public class SingleProductPage extends BasePage {
     }
 
     public void clickSingleProductTab() {
-        clickAfterWaitForElement(singleProductTabButton);
+        click(singleProductTabButton);
     }
 
     public boolean checkSingleProductModal() {
@@ -47,9 +47,9 @@ public class SingleProductPage extends BasePage {
     }
 
     public void setProductColor(String color) {
-        clickAfterWaitForElement(colorCombobox);
+        click(colorCombobox);
         clickAndWrite(colorText, color);
-        clickAfterWaitForElement(colorComboItem);
+        click(colorComboItem);
     }
 
     public void uploadProductImage(String image) {
@@ -58,7 +58,7 @@ public class SingleProductPage extends BasePage {
     }
 
     public void setNumberVariant(String numberVariant) {
-        clickAfterWaitForElement(variantText);
+        click(variantText);
         clickAndWrite(variantText, numberVariant);
     }
 
@@ -91,7 +91,6 @@ public class SingleProductPage extends BasePage {
     public void setDescription(String description) {
         new Actions(getDriver()).moveToElement(getDriver().findElement(descriptionButton)).click().perform();
         clickAndWrite(descriptionText, description);
-        clickAndWrite(descriptionText, description);
     }
 
     public void clickApprovalofAddSingleProduct() {
@@ -106,5 +105,8 @@ public class SingleProductPage extends BasePage {
     public void checkSuccessfulMessage() {
         String actualMessage = getText(successfulMessageLabel);
         assertEquals(addProductFailMessage, successfulMessage, actualMessage);
+    }
+    public String getTitle() {
+        return getText(addProductPageViewTitle);
     }
 }

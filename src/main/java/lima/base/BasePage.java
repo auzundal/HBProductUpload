@@ -38,6 +38,16 @@ public class BasePage {
         element.sendKeys(value);
     }
 
+    protected void uploadMedia(By locator, String value){
+        isElementDisplayed(locator);
+        findElement(locator).sendKeys(value);
+    }
+
+    public boolean isElementDisplayed(By by) {
+
+        return findElement(by).isDisplayed();
+    }
+
     protected WebElement waitUntilVisibleByLocator(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }

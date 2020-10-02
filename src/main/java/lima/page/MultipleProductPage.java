@@ -23,7 +23,7 @@ public class MultipleProductPage extends BasePage {
     }
 
     public void fileUploadFromPc(String filename) {
-        clickAndWrite(inputUploadFromPc,excelPath.concat(filename));
+        uploadMedia(inputUploadFromPc,excelPath.concat(filename));
     }
 
     public void waitWithSecond(String filename) throws Exception {
@@ -39,7 +39,6 @@ public class MultipleProductPage extends BasePage {
 
     public void uploadedFileName(String expectedFileName) {
         waitUntilVisibleByLocator(uploadedFileNameInSuccesfullyTab);
-        WebElement errorMessageTitleText = getDriver().findElement(uploadedFileNameInSuccesfullyTab);
-        Assert.assertEquals(expectedFileName,errorMessageTitleText.getText());
+        Assert.assertEquals(expectedFileName,getText(uploadedFileNameInSuccesfullyTab));
     }
 }

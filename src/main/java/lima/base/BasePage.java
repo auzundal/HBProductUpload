@@ -1,6 +1,7 @@
 package lima.base;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -37,6 +38,22 @@ public class BasePage {
         element.click();
         takeScreenShot("Sendkeys");
         element.sendKeys(value);
+    }
+
+    protected void uploadMedia(By locator, String value){
+        isElementDisplayed(locator);
+        findElement(locator).sendKeys(value);
+    }
+
+    public boolean isElementDisplayed(By by) {
+
+        return findElement(by).isDisplayed();
+    }
+
+    protected boolean waitUntilInvisibleByLocator(By locator, int timeout) {
+        WebDriverWait waitPorgressBar = new WebDriverWait(driver, timeout);
+        waitPorgressBar.ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
+        return waitPorgressBar.until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
     protected WebElement waitUntilVisibleByLocator(By locator) {

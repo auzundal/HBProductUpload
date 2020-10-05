@@ -1,6 +1,7 @@
 package lima.constants;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public interface Constants {
 
@@ -73,5 +74,13 @@ public interface Constants {
         String successfulMessage = "Ürününüz onaya gönderildi";
         String addProductFailMessage = "Ürün ekleme basarisiz";
         By addProductPageViewTitle = By.xpath("//span[contains(text(),'Ürün Ekle')]");
+    }
+
+    interface MultipleProduct{
+        By inputUploadFromPc=By.id("fileUploadModal-dragAndDrop-excelUpload");
+        By showAllOfThem = By.cssSelector("div.uploadExcelHistory_showAll_2hLaP");
+        By successfullyTab = By.cssSelector("div.uploadExcelHistory_tab_3hwGz:nth-child(3)");
+        By uploadedFileNameInSuccesfullyTab = By.cssSelector("li:nth-child(1) > div > div > span.uploadExcelHistory_filename_1Mj3-");
+        By uploadProgressBar = By.cssSelector("circle.circularProgressBar_circle-background_1lp6L");
     }
 }

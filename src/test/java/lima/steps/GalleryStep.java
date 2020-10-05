@@ -18,6 +18,7 @@ import static lima.constants.Constants.GalleryPage.imageMessageLabel;
 import static lima.constants.Constants.GalleryPage.imageNameLabel;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
 
 public class GalleryStep {
     private GalleryPage galleryPage;

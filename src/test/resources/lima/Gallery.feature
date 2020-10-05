@@ -147,7 +147,7 @@ Feature: This feature contains gallery page's and its components' test
     And Merchant click sort arrow
     Then first image should be "1.jpg"
     And Merchant click sort arrow
-    Then Merchant should see defauld sort button
+    Then Merchant should see default sort button
 
 
   @single-image-upload-success

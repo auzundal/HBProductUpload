@@ -24,6 +24,7 @@ public interface Constants {
         By invalidUrlErrorPageTitle = By.id("errorPage-span-title");
         By imageMessageLabel = By.className("uploadScreen_status_3E0A-");
         By imageNameLabel = By.className("uploadScreen_filename_3hEFr");
+        By incorrectFormatUploadMessage = By.className("toastNotification_content_3mnqm");
     }
 
 

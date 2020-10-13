@@ -117,41 +117,8 @@ Feature: This feature contains gallery page's and its components' test
     Given Merchant search "Single" in search field in gallery page
     Then Merchant should see only see images that has "Single" word contained in image name
 
-
-  Scenario: Check sort strategy
-    Given Merchant click sort button
-    And Merchant select "Tarihi Sıraya Göre" sort strategy
-    Then Merchant should see "En Son Yüklenen" text in sort field
-    And Merchant click sort arrow
-    Then Merchant should see "İlk Yüklenen" text in sort field
-    And Merchant click sort arrow
-    Then Merchant should see defauld sort button
-    And Merchant click sort button
-    And Merchant select "Alfabetik Sıraya Göre" sort strategy
-    Then Merchant should see "İsme Göre Azalan" text in sort field
-    And Merchant click sort arrow
-    Then Merchant should see "İsme Göre Artan" text in sort field
-    And Merchant click sort arrow
-    Then Merchant should see defauld sort button
-
-  Scenario: Check sort working
-    Given Merchant click sort button
-    And Merchant select "Tarihi Sıraya Göre" sort strategy
-    Then first image should be "1.jpg"
-    And Merchant click sort arrow
-    Then first image should be "Single.jpg"
-    And Merchant click sort arrow
-    Then Merchant should see defauld sort button
-    And Merchant select "Alfabetik Sıraya Göre" sort strategy
-    Then first image should be "Single.jpg"
-    And Merchant click sort arrow
-    Then first image should be "1.jpg"
-    And Merchant click sort arrow
-    Then Merchant should see default sort button
-
-
   @single-image-upload-success
-  Scenario: Upload a single image success upload
+  Scenario: Correct format single image upload
 
     When Merchant click product process button
     And Merchant click gallery process button
@@ -159,9 +126,22 @@ Feature: This feature contains gallery page's and its components' test
 
     When Merchant click upload image button in gallery page
     And  Merchant upload files in Image Upload Page:
-      | Vidar22.jpg |
-    And Merchant check uploaded image name as "Vidar22.jpg"
+      | araba.jpg |
+    And Merchant check uploaded image name as "araba.jpg"
     Then Merchant check uploaded image message as "Yükleme başarılı!"
+
+  @single-image-upload-unsuccess
+  Scenario: Incorrect format single image upload
+
+    When Merchant click product process button
+    And Merchant click gallery process button
+    Then Merchant should see title as "Görsel Galerisi" in Gallery Page
+
+    When Merchant click upload image button in gallery page
+    And  Merchant upload files in Excel Upload Page:
+      | record34.xlsx |
+    Then Merchant check incorrect format single image upload message as "Sadece JPG veya PNG formatında resim yükleyebilirsiniz."
+
 
 
 

@@ -74,13 +74,11 @@ public class GalleryStep {
     @When("^Merchant upload files in Image Upload Page:$")
     public void merchantUploadFilesInImageUploadPage(List<String> images) throws Throwable {
         galleryPage.uploadImageFile(images);
-        Thread.sleep(15000);
     }
 
     @And("^Merchant upload files in Excel Upload Page:$")
     public void merchantUploadFilesInExcelUploadPage(List<String> excelFile) throws InterruptedException {
         galleryPage.uploadExcelFile(excelFile);
-        Thread.sleep(5000);
     }
 
     @Then("^These images are available in Image Upload Page:$")

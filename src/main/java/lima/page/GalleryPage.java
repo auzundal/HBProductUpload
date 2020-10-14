@@ -141,12 +141,12 @@ public class GalleryPage extends BasePage {
     }
 
     public String getImageName() {
-        WebElement imageName = waitUntilVisibleByLocator(imageNameLabel);
+        WebElement imageName = waitUntilVisibleByLocator(successImageUploadMessage);
         return imageName.getText();
     }
 
     public String getImageMessage() {
-        WebElement imageMessage = waitUntilVisibleByLocator(imageMessageLabel);
+        WebElement imageMessage = waitUntilVisibleByLocator(successImageUploadMessage);
         return imageMessage.getText();
     }
 

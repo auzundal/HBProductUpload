@@ -109,8 +109,8 @@ Feature: This feature contains gallery page's and its components' test
       | image.png      |
     Then Merchant search "<imageName>" in search field in gallery page
     Examples:
-      | imageName          |
-      | Opeth logo, image  |
+      | imageName         |
+      | Opeth logo, image |
 
   @search-an-image-in-gallery
   Scenario: Search an image that is in merchant's gallery
@@ -127,7 +127,6 @@ Feature: This feature contains gallery page's and its components' test
     When Merchant click upload image button in gallery page
     And  Merchant upload files in Image Upload Page:
       | araba.jpg |
-    And Merchant check uploaded image name as "araba.jpg"
     Then Merchant check uploaded image message as "Yükleme başarılı!"
 
   @single-image-upload-unsuccess

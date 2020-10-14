@@ -25,6 +25,7 @@ public interface Constants {
         By imageMessageLabel = By.className("uploadScreen_status_3E0A-");
         By imageNameLabel = By.className("uploadScreen_filename_3hEFr");
         By incorrectFormatUploadMessage = By.className("toastNotification_content_3mnqm");
+        By successImageUploadMessage=By.xpath("//span[contains(text(),'Yükleme başarılı!')]");
     }
 
 

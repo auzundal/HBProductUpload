@@ -52,9 +52,9 @@ public class BasePage {
     }
 
     protected boolean waitUntilInvisibleByLocator(By locator, int timeout) {
-        WebDriverWait waitPorgressBar = new WebDriverWait(driver, timeout);
-        waitPorgressBar.ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
-        return waitPorgressBar.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+        WebDriverWait waitProgressBar = new WebDriverWait(driver, timeout);
+        waitProgressBar.ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
+        return waitProgressBar.until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
     protected WebElement waitUntilVisibleByLocator(By locator) {

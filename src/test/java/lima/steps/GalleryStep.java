@@ -74,8 +74,11 @@ public class GalleryStep {
     @When("^Merchant upload files in Image Upload Page:$")
     public void merchantUploadFilesInImageUploadPage(List<String> images) throws Throwable {
         galleryPage.uploadImageFile(images);
-        Thread.sleep(5000);
+    }
 
+    @And("^Merchant upload files in Excel Upload Page:$")
+    public void merchantUploadFilesInExcelUploadPage(List<String> excelFile) throws InterruptedException {
+        galleryPage.uploadExcelFile(excelFile);
     }
 
     @Then("^These images are available in Image Upload Page:$")
@@ -138,15 +141,21 @@ public class GalleryStep {
         galleryPage.searchImageInGalleryPage(imageName);
     }
 
+    @And("Merchant check uploaded image name as {string}")
+    public void merchantCheckUploadedImageNameAs(String uploadedImageName) {
+        String checkImageName = galleryPage.getImageName();
+        Assert.assertEquals(uploadedImageName, checkImageName);
+    }
+
     @Then("Merchant check uploaded image message as {string}")
     public void merchantCheckUploadedImageAs(String uploadedImageMessage) {
-        String checkImageMessage = galleryPage.getText(imageMessageLabel);
+        String checkImageMessage = galleryPage.getImageMessage();
         Assert.assertEquals(uploadedImageMessage, checkImageMessage);
     }
 
-    @And("Merchant check uploaded image name as {string}")
-    public void merchantCheckUploadedImageNameAs(String uploadedImageName) {
-        String checkImageName = galleryPage.getText(imageNameLabel);
-        Assert.assertEquals(uploadedImageName, checkImageName);
+    @Then("Merchant check incorrect format single image upload message as {string}")
+    public void merchantCheckIncorrectFormatSingleImageUploadMessageAs(String incorrectFormatMessage) {
+        String checkIncorrectFormatMessage = galleryPage.getIncorretFormatMessage();
+        Assert.assertEquals(incorrectFormatMessage, checkIncorrectFormatMessage);
     }
 }

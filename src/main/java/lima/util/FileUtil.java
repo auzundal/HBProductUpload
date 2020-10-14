@@ -7,10 +7,11 @@ import java.util.stream.Collectors;
 
 public class FileUtil {
 
-    public static String IMAGE_UPLOAD_FOLDER = "C:/imageUpload";
+    public static String imagePath = System.getProperty("imagePath");
+    public static String excelUploadPath = System.getProperty("excelUploadPath");
 
     public static List<String> getValidImageNames() {
-        File folder = new File(IMAGE_UPLOAD_FOLDER);
+        File folder = new File(imagePath);
         return Arrays.stream(folder.listFiles()).map(i -> i.getName()).collect(Collectors.toList());
     }
 }

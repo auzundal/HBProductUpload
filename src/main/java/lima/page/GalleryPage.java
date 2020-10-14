@@ -7,7 +7,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import static lima.constants.Constants.GalleryPage.*;
-import static lima.constants.Constants.LoginPage.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,9 +50,19 @@ public class GalleryPage extends BasePage {
     public void uploadImageFile(List<String> images) {
         List<String> pathImages = new ArrayList<>();
         for (String image : images) {
-            pathImages.add(FileUtil.IMAGE_UPLOAD_FOLDER + "/" + image);
-
+            pathImages.add(FileUtil.imagePath + image);
         }
+        String imageList = String.join(" \n ", pathImages);
+        WebElement fileInput = getDriver().findElement(imageUploadModalDragAndDrop);
+        fileInput.sendKeys(imageList);
+    }
+
+    public void uploadExcelFile(List<String> excelFile) {
+        List<String> pathImages = new ArrayList<>();
+        for (String excel : excelFile) {
+            pathImages.add(FileUtil.excelUploadPath + excel);
+        }
+
         String imageList = String.join(" \n ", pathImages);
         WebElement fileInput = getDriver().findElement(imageUploadModalDragAndDrop);
         fileInput.sendKeys(imageList);
@@ -129,6 +138,21 @@ public class GalleryPage extends BasePage {
     public String invalidUrlErrorMessaage() {
         WebElement errorPageTitle = waitUntilVisibleByLocator(invalidUrlErrorPageTitle);
         return errorPageTitle.getText();
+    }
+
+    public String getImageName() {
+        WebElement imageName = waitUntilVisibleByLocator(successImageUploadMessage);
+        return imageName.getText();
+    }
+
+    public String getImageMessage() {
+        WebElement imageMessage = waitUntilVisibleByLocator(successImageUploadMessage);
+        return imageMessage.getText();
+    }
+
+    public String getIncorretFormatMessage() {
+        WebElement incorrectFormatMessage = waitUntilVisibleByLocator(incorrectFormatUploadMessage);
+        return incorrectFormatMessage.getText();
     }
 }
 

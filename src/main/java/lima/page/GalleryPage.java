@@ -1,11 +1,11 @@
 package lima.page;
 
 import lima.base.BasePage;
-import lima.constants.Constants;
 import lima.util.FileUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 import static lima.constants.Constants.GalleryPage.*;
 
 import java.util.ArrayList;
@@ -145,6 +145,13 @@ public class GalleryPage extends BasePage {
         return imageName.getText();
     }
 
+    public String getSearchedImageName() throws InterruptedException {
+        //waitUntilVisibleByLocator(searchedImageContent);
+      //  hover(searchedImageContent);
+        WebElement imageName = waitUntilPresenceByLocator(searchedImageName);
+        return imageName.getText();
+    }
+
     public String getImageMessage() {
         WebElement imageMessage = waitUntilVisibleByLocator(successImageUploadMessage);
         return imageMessage.getText();
@@ -153,6 +160,14 @@ public class GalleryPage extends BasePage {
     public String getIncorretFormatMessage() {
         WebElement incorrectFormatMessage = waitUntilVisibleByLocator(incorrectFormatUploadMessage);
         return incorrectFormatMessage.getText();
+    }
+
+    public void clickAndWriteImageSearch(String imageName) throws InterruptedException {
+        clickAndWrite(searchImageTextbox, imageName);
+    }
+
+    public void clickCloseImageUploadPage() {
+        click(closeUploadImagePage);
     }
 }
 

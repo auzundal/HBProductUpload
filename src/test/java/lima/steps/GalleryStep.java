@@ -158,4 +158,21 @@ public class GalleryStep {
         String checkIncorrectFormatMessage = galleryPage.getIncorretFormatMessage();
         Assert.assertEquals(incorrectFormatMessage, checkIncorrectFormatMessage);
     }
+
+    @When("Merchant click and search image textbox as {string}")
+    public void merchantClickSearchImageTextbox(String imageName) throws InterruptedException {
+        galleryPage.clickAndWriteImageSearch(imageName);
+        Thread.sleep(5000);
+    }
+
+    @Then("Merchant close upload image page")
+    public void merchantClickCloseUploadImagePage() {
+        galleryPage.clickCloseImageUploadPage();
+    }
+
+    @Then("Merchant should see image name as {string}")
+    public void merchantShouldSeeImageNameAs(String imageName) throws InterruptedException {
+        String checkImageName = galleryPage.getSearchedImageName();
+        Assert.assertEquals(imageName, checkImageName);
+    }
 }

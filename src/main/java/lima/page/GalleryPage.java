@@ -146,8 +146,6 @@ public class GalleryPage extends BasePage {
     }
 
     public String getSearchedImageName() throws InterruptedException {
-        //waitUntilVisibleByLocator(searchedImageContent);
-      //  hover(searchedImageContent);
         WebElement imageName = waitUntilPresenceByLocator(searchedImageName);
         return imageName.getText();
     }

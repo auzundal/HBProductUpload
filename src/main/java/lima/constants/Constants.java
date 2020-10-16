@@ -25,7 +25,10 @@ public interface Constants {
         By imageMessageLabel = By.className("uploadScreen_status_3E0A-");
         By imageNameLabel = By.className("uploadScreen_filename_3hEFr");
         By incorrectFormatUploadMessage = By.className("toastNotification_content_3mnqm");
-        By successImageUploadMessage=By.xpath("//span[contains(text(),'Yükleme başarılı!')]");
+        By successImageUploadMessage = By.xpath("//span[contains(text(),'Yükleme başarılı!')]");
+        By closeUploadImagePage = By.xpath("//div[@class='ModalHeader_modalHeader_2u_4J']//img");
+        By searchedImageName = By.xpath("//*[@class='imageList_cardTitle_ei03M']");
+        By searchedImageContent= By.xpath("//div[@class='imageList_cardImgContainer_2x5qY']");
     }
 
 
@@ -78,8 +81,8 @@ public interface Constants {
         By addProductPageViewTitle = By.xpath("//span[contains(text(),'Ürün Ekle')]");
     }
 
-    interface MultipleProduct{
-        By inputUploadFromPc=By.id("fileUploadModal-dragAndDrop-excelUpload");
+    interface MultipleProduct {
+        By inputUploadFromPc = By.id("fileUploadModal-dragAndDrop-excelUpload");
         By showAllOfThem = By.cssSelector("div.uploadExcelHistory_showAll_2hLaP");
         By successfullyTab = By.cssSelector("div.uploadExcelHistory_tab_3hwGz:nth-child(3)");
         By uploadedFileNameInSuccesfullyTab = By.cssSelector("li:nth-child(1) > div > div > span.uploadExcelHistory_filename_1Mj3-");

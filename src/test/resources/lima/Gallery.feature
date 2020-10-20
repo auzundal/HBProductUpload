@@ -157,6 +157,25 @@ Feature: This feature contains gallery page's and its components' test
     When Merchant click and search image textbox as "araba.jpg"
     Then Merchant should see image name as "araba.jpg"
 
+  @verify-delete-image-button
+  Scenario: Verify Delete Image Button
+
+    When Merchant click product process button
+    And Merchant click gallery process button
+    And Merchant should see title as "Görsel Galerisi" in Gallery Page
+
+    When Merchant click upload image button in gallery page
+    And  Merchant upload files in Image Upload Page:
+      | araba.jpg |
+    And Merchant check uploaded image message as "Yükleme başarılı!"
+    Then Merchant close upload image page
+
+    When Merchant click and search image textbox as "araba.jpg"
+    And Merchant should see image name as "araba.jpg"
+    And Merchant delete uploaded image
+
+
+
 
 
 

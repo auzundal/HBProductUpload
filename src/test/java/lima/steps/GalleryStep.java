@@ -12,6 +12,7 @@ import lima.util.DriverUtil;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 
+import java.awt.*;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -176,5 +177,10 @@ public class GalleryStep {
     @Then("Merchant delete uploaded image")
     public void merchantDeleteUploadedImage() {
         galleryPage.deleteUploadedImage();
+    }
+
+    @Then("Scroll to end of the page with {string} image name")
+    public void scrollToEndOfThePageWithImageName(String imageName) throws AWTException, InterruptedException {
+        galleryPage.scrollToEndOfThePage(imageName);
     }
 }

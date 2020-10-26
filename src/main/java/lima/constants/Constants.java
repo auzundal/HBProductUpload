@@ -33,6 +33,7 @@ public interface Constants {
         By removeFirstImageButton = By.xpath("(//button[@id='imageCard-button-removeImage']//img)[1]");
         By confirmDeleteImage = By.xpath("//span[contains(text(),'Evet')]");
         By returnGalleryPage = By.id("galleryView-button-noImageUpload");
+        By pageHeaderName = By.id("page-header-info");
     }
 
 

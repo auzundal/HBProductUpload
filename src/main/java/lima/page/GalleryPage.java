@@ -7,10 +7,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import static lima.constants.Constants.GalleryPage.*;
+import static lima.constants.Constants.GalleryPage.pageHeaderName;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class GalleryPage extends BasePage {
 
@@ -175,6 +178,19 @@ public class GalleryPage extends BasePage {
         click(confirmDeleteImage);
         waitUntilVisibleByLocator(returnGalleryPage);
         click(returnGalleryPage);
+    }
+
+    public void scrollToEndOfThePage(String imageName) throws AWTException, InterruptedException {
+        click(pageHeaderName);
+        int counter = 0;
+        while (waitUntilDisplayed(By.xpath("//span[contains(text(), '" + imageName + "')]"))) {
+            counter+=1;
+            sendEndKey();
+            TimeUnit.SECONDS.sleep(3);
+            if (isDisplayed(By.xpath("//span[contains(text(), '" + imageName + "')]")) || counter==10) {
+                break;
+            }
+        }
     }
 }
 

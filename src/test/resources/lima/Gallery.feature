@@ -5,7 +5,7 @@ Feature: This feature contains gallery page's and its components' test
     Given Merchant is on the Login Page
     When Merchant login with "Sprint-100" username, "Test123!" password
     When Merchant should see "Sprint-100" username as on Home Page
-  #  Then Merchant go to gallery page
+  #Then Merchant go to gallery page
 
   @check-gallery-page-opening
   Scenario: Check gallery page opening
@@ -174,6 +174,10 @@ Feature: This feature contains gallery page's and its components' test
     And Merchant should see image name as "araba.jpg"
     And Merchant delete uploaded image
 
+  @scroll-to-parameter-element
+  Scenario: Scroll to end of the page with image name
+    Then Merchant go to gallery page
+    Then Scroll to end of the page with "Cat-COVID-19-Mask.jpg" image name
 
 
 

@@ -14,11 +14,8 @@ import org.openqa.selenium.By;
 
 import java.util.List;
 
-import static lima.constants.Constants.GalleryPage.imageMessageLabel;
-import static lima.constants.Constants.GalleryPage.imageNameLabel;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
 
 public class GalleryStep {
     private GalleryPage galleryPage;
@@ -174,5 +171,10 @@ public class GalleryStep {
     public void merchantShouldSeeImageNameAs(String imageName) throws InterruptedException {
         String checkImageName = galleryPage.getSearchedImageName();
         Assert.assertEquals(imageName, checkImageName);
+    }
+
+    @Then("Merchant delete uploaded image")
+    public void merchantDeleteUploadedImage() {
+        galleryPage.deleteUploadedImage();
     }
 }

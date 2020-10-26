@@ -167,5 +167,14 @@ public class GalleryPage extends BasePage {
     public void clickCloseImageUploadPage() {
         click(closeUploadImagePage);
     }
+
+    public void deleteUploadedImage(){
+        hover(searchedImageContent);
+        click(removeFirstImageButton);
+        waitUntilVisibleByLocator(confirmDeleteImage);
+        click(confirmDeleteImage);
+        waitUntilVisibleByLocator(returnGalleryPage);
+        click(returnGalleryPage);
+    }
 }
 

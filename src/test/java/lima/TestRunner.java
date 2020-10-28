@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/lima/",
         glue = "lima",
-        plugin = { "pretty", "json:target/cucumber-report.json","io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm",
-                "html:target/html/"}
+        plugin = { "pretty", "json:target/cucumber-reports/cucumber.json","io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm",
+                "html:target/cucumber-html-report","junit:target/cucumber-reports/cucumber.xml"}
 )
 public class TestRunner {
 

@@ -172,7 +172,24 @@ Feature: This feature contains gallery page's and its components' test
 
     When Merchant click and search image textbox as "araba.jpg"
     And Merchant should see image name as "araba.jpg"
-    And Merchant delete uploaded image
+    Then Merchant delete uploaded image
+
+  @verify-delete-selected-image-button-from-gallery
+  Scenario: Verify delete selected image button from gallery
+
+    When Merchant click product process button
+    And Merchant click gallery process button
+    And Merchant should see title as "Görsel Galerisi" in Gallery Page
+
+    When Merchant click upload image button in gallery page
+    And  Merchant upload files in Image Upload Page:
+      | araba.jpg |
+    And Merchant check uploaded image message as "Yükleme başarılı!"
+    Then Merchant close upload image page
+
+    When Merchant click and search image textbox as "araba.jpg"
+    And Merchant should see image name as "araba.jpg"
+    Then Merchant delete selected image from gallery
 
   @scroll-to-parameter-element
   Scenario: Scroll to end of the page with image name

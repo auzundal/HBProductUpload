@@ -179,6 +179,17 @@ public class GalleryPage extends BasePage {
         waitUntilVisibleByLocator(returnGalleryPage);
         click(returnGalleryPage);
     }
+    public void deleteSelectedImageButton(){
+        hover(searchedImageContent);
+        click(selectSearchedImage);
+        waitUntilVisibleByLocator(deleteSelectedImageButton);
+        click(deleteSelectedImageButton);
+        waitUntilVisibleByLocator(confirmDeleteImage);
+        click(confirmDeleteImage);
+        waitUntilVisibleByLocator(returnGalleryPage);
+        click(returnGalleryPage);
+    }
+
 
     public void scrollToEndOfThePage(String imageName) throws AWTException, InterruptedException {
         click(pageHeaderName);

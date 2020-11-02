@@ -183,4 +183,9 @@ public class GalleryStep {
     public void scrollToEndOfThePageWithImageName(String imageName) throws AWTException, InterruptedException {
         galleryPage.scrollToEndOfThePage(imageName);
     }
+
+    @And("Merchant delete selected image from gallery")
+    public void merchantDeleteSelectedImageFromGallery() {
+        galleryPage.deleteSelectedImageButton();
+    }
 }

@@ -1,13 +1,13 @@
 package lima.base;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
@@ -116,5 +116,42 @@ public class BasePage {
         click(areaPath);
         clickAndWrite(genericComboBoxText, value);
         click(listItemPath);
+    }
+
+    protected void sendEndKey() throws AWTException {
+        Robot robot = new Robot();
+        robot.keyPress(KeyEvent.VK_END);
+    }
+
+    protected ExpectedCondition<Boolean> waitUntilInVisibleByLocator(By locator) {
+        return new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                try {
+                    return !driver.findElement(locator).isDisplayed();
+                } catch (org.openqa.selenium.NoSuchElementException nc) {
+                    return true;
+                } catch (StaleElementReferenceException ex) {
+                    return true;
+                } catch (TimeoutException te) {
+                    return true;
+                }
+            }
+
+            public String toString() {
+                return "element to be visible: " + locator;
+            }
+        };
+    }
+
+    public boolean waitUntilDisplayed(By by) {
+        return wait.until(waitUntilInVisibleByLocator(by));
+    }
+
+    public boolean isDisplayed(By by) {
+        try {
+            return getDriver().findElement(by).isDisplayed();
+        } catch (Exception ex) {
+            return false;
+        }
     }
 }

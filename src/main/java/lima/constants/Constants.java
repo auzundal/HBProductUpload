@@ -28,7 +28,14 @@ public interface Constants {
         By successImageUploadMessage = By.xpath("//span[contains(text(),'Yükleme başarılı!')]");
         By closeUploadImagePage = By.xpath("//div[@class='ModalHeader_modalHeader_2u_4J']//img");
         By searchedImageName = By.xpath("//*[@class='imageList_cardTitle_ei03M']");
-        By searchedImageContent= By.xpath("//div[@class='imageList_cardImgContainer_2x5qY']");
+        By searchedImageContent = By.xpath("//div[@class='imageList_cardImgContainer_2x5qY']");
+        By imageListContainer = By.id("image-list-container");
+        By removeFirstImageButton = By.xpath("(//button[@id='imageCard-button-removeImage']//img)[1]");
+        By selectSearchedImage = By.xpath("(//div[@class='imageList_imageCard_3iT91']//img[@alt='selectCardIcon'])[1]");
+        By deleteSelectedImageButton = By.id("pageHeaderInfo-button-deleteSelected");
+        By confirmDeleteImage = By.xpath("//span[contains(text(),'Evet')]");
+        By returnGalleryPage = By.id("galleryView-button-noImageUpload");
+        By pageHeaderName = By.id("page-header-info");
     }
 
 

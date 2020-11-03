@@ -5,7 +5,7 @@ Feature: This feature contains gallery page's and its components' test
     Given Merchant is on the Login Page
     When Merchant login with "Sprint-100" username, "Test123!" password
     When Merchant should see "Sprint-100" username as on Home Page
-  #  Then Merchant go to gallery page
+  #Then Merchant go to gallery page
 
   @check-gallery-page-opening
   Scenario: Check gallery page opening
@@ -156,6 +156,47 @@ Feature: This feature contains gallery page's and its components' test
 
     When Merchant click and search image textbox as "araba.jpg"
     Then Merchant should see image name as "araba.jpg"
+
+  @verify-delete-image-button
+  Scenario: Verify Delete Image Button
+
+    When Merchant click product process button
+    And Merchant click gallery process button
+    And Merchant should see title as "Görsel Galerisi" in Gallery Page
+
+    When Merchant click upload image button in gallery page
+    And  Merchant upload files in Image Upload Page:
+      | araba.jpg |
+    And Merchant check uploaded image message as "Yükleme başarılı!"
+    Then Merchant close upload image page
+
+    When Merchant click and search image textbox as "araba.jpg"
+    And Merchant should see image name as "araba.jpg"
+    Then Merchant delete uploaded image
+
+  @verify-delete-selected-image-button-from-gallery
+  Scenario: Verify delete selected image button from gallery
+
+    When Merchant click product process button
+    And Merchant click gallery process button
+    And Merchant should see title as "Görsel Galerisi" in Gallery Page
+
+    When Merchant click upload image button in gallery page
+    And  Merchant upload files in Image Upload Page:
+      | araba.jpg |
+    And Merchant check uploaded image message as "Yükleme başarılı!"
+    Then Merchant close upload image page
+
+    When Merchant click and search image textbox as "araba.jpg"
+    And Merchant should see image name as "araba.jpg"
+    Then Merchant delete selected image from gallery
+
+
+  @scroll-to-parameter-element
+  Scenario: Scroll to end of the page with image name
+    Then Merchant go to gallery page
+    Then Scroll to end of the page with "Cat-COVID-19-Mask.jpg" image name
+
 
 
 

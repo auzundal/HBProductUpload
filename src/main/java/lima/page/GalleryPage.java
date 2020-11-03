@@ -171,21 +171,40 @@ public class GalleryPage extends BasePage {
         click(closeUploadImagePage);
     }
 
-    public void deleteUploadedImage(){
+    public void deleteUploadedImage() {
+        clickRemoveFirstImage();
+        clickConfirmDeleteImage();
+        clickReturnGalleryPage();
+    }
+
+    public void deleteSelectedImageButton() {
+        clickSelectSearchImage();
+        clickDeleteSelectedImageButton();
+        clickConfirmDeleteImage();
+        clickReturnGalleryPage();
+    }
+
+    public void clickRemoveFirstImage() {
         hover(searchedImageContent);
         click(removeFirstImageButton);
-        waitUntilVisibleByLocator(confirmDeleteImage);
-        click(confirmDeleteImage);
-        waitUntilVisibleByLocator(returnGalleryPage);
-        click(returnGalleryPage);
     }
-    public void deleteSelectedImageButton(){
+
+    public void clickSelectSearchImage() {
         hover(searchedImageContent);
         click(selectSearchedImage);
+    }
+
+    public void clickDeleteSelectedImageButton() {
         waitUntilVisibleByLocator(deleteSelectedImageButton);
         click(deleteSelectedImageButton);
+    }
+
+    public void clickConfirmDeleteImage() {
         waitUntilVisibleByLocator(confirmDeleteImage);
         click(confirmDeleteImage);
+    }
+
+    public void clickReturnGalleryPage() {
         waitUntilVisibleByLocator(returnGalleryPage);
         click(returnGalleryPage);
     }
@@ -195,10 +214,10 @@ public class GalleryPage extends BasePage {
         click(pageHeaderName);
         int counter = 0;
         while (waitUntilDisplayed(By.xpath("//span[contains(text(), '" + imageName + "')]"))) {
-            counter+=1;
+            counter += 1;
             sendEndKey();
             TimeUnit.SECONDS.sleep(3);
-            if (isDisplayed(By.xpath("//span[contains(text(), '" + imageName + "')]")) || counter==10) {
+            if (isDisplayed(By.xpath("//span[contains(text(), '" + imageName + "')]")) || counter == 10) {
                 break;
             }
         }

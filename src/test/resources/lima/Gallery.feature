@@ -191,6 +191,7 @@ Feature: This feature contains gallery page's and its components' test
     And Merchant should see image name as "araba.jpg"
     Then Merchant delete selected image from gallery
 
+
   @scroll-to-parameter-element
   Scenario: Scroll to end of the page with image name
     Then Merchant go to gallery page

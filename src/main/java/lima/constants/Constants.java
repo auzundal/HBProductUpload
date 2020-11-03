@@ -31,6 +31,8 @@ public interface Constants {
         By searchedImageContent = By.xpath("//div[@class='imageList_cardImgContainer_2x5qY']");
         By imageListContainer = By.id("image-list-container");
         By removeFirstImageButton = By.xpath("(//button[@id='imageCard-button-removeImage']//img)[1]");
+        By selectSearchedImage = By.xpath("(//div[@class='imageList_imageCard_3iT91']//img[@alt='selectCardIcon'])[1]");
+        By deleteSelectedImageButton = By.id("pageHeaderInfo-button-deleteSelected");
         By confirmDeleteImage = By.xpath("//span[contains(text(),'Evet')]");
         By returnGalleryPage = By.id("galleryView-button-noImageUpload");
         By pageHeaderName = By.id("page-header-info");

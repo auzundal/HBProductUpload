@@ -43,12 +43,13 @@ public class DriverUtil {
         }
 
         ChromeOptions options = new ChromeOptions();
+        // FirefoxOptions options = new FirefoxOptions();
         options.addArguments("start-maximized");
+
 
         if (remote) {
             try {
-                String gridIP = System.getProperty("gridIP");
-                driver = new RemoteWebDriver(new URL("http://"+gridIP+":4444/wd/hub"), options);
+                driver = new RemoteWebDriver(new URL("http://192.168.21.210:4444/wd/hub"), options);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }

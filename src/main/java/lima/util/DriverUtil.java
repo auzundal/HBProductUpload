@@ -46,6 +46,7 @@ public class DriverUtil {
         // FirefoxOptions options = new FirefoxOptions();
         options.addArguments("start-maximized");
 
+
         if (remote) {
             try {
                 driver = new RemoteWebDriver(new URL("http://192.168.21.210:4444/wd/hub"), options);

@@ -99,7 +99,7 @@ public class GalleryStep {
 
     @Then("^These files are invalid format toast error message$")
     public void theseFilesAreInvalidFormatErrorMessage() throws Throwable {
-        Assert.assertThat(galleryPage.invalidImageFormatErrorMessage(), is("Bazı dosyalarınızın formatı desteklenmiyor. Desteklenen formatlar: JPG ve PNG."));
+        Assert.assertThat(galleryPage.invalidImageFormatErrorMessage(), is("Sadece JPG veya PNG formatında resim yükleyebilirsiniz."));
 
     }
 
@@ -187,5 +187,10 @@ public class GalleryStep {
     @And("Merchant delete selected image from gallery")
     public void merchantDeleteSelectedImageFromGallery() {
         galleryPage.deleteSelectedImageButton();
+    }
+
+    @Then("Merchant see upload image button")
+    public void merchantSeeUploadImageButton() {
+        galleryPage.seeUploadImageButton();
     }
 }

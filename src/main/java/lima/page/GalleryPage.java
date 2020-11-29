@@ -134,7 +134,7 @@ public class GalleryPage extends BasePage {
 
 
     public String invalidImageFormatErrorMessage() {
-        WebElement errorToastNotification = waitUntilVisibleByLocator(By.cssSelector("#product-app > div > div.notification__notification___3eGwx.notification__success___1YQYR > span > span:nth-child(1)"));
+        WebElement errorToastNotification = waitUntilVisibleByLocator(errorToastMessage);
         return errorToastNotification.getText();
     }
 
@@ -221,6 +221,11 @@ public class GalleryPage extends BasePage {
                 break;
             }
         }
+    }
+
+    public void seeUploadImageButton() {
+        waitUntilVisibleByLocator(imageUploadButton);
+
     }
 }
 

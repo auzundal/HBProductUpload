@@ -36,6 +36,7 @@ public interface Constants {
         By confirmDeleteImage = By.xpath("//span[contains(text(),'Evet')]");
         By returnGalleryPage = By.id("galleryView-button-noImageUpload");
         By pageHeaderName = By.id("page-header-info");
+        By errorToastMessage = By.xpath("//div[@class='toastNotification_textContainer_2bzkh']/span[@class='toastNotification_content_3mnqm']");
     }
 
 

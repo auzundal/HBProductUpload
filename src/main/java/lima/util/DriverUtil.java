@@ -54,7 +54,7 @@ public class DriverUtil {
                 e.printStackTrace();
             }
         } else {
-            System.setProperty("webdriver.chrome.driver", "src/main/resources/webdriver/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "src/main/resources/webdriver/chromedriver87.exe");
             driver = new ChromeDriver(options);
         }
 

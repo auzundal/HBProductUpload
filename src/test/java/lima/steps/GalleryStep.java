@@ -193,4 +193,9 @@ public class GalleryStep {
     public void merchantSeeUploadImageButton() {
         galleryPage.seeUploadImageButton();
     }
+
+    @Then("Merchant should see product process button")
+    public void merchantShouldSeeProductProcessButton() {
+        galleryPage.checkProductProcessButton();
+    }
 }

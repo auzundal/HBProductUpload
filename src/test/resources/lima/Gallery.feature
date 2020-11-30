@@ -4,8 +4,7 @@ Feature: This feature contains gallery page's and its components' test
   Background:
     Given Merchant is on the Login Page
     When Merchant login with "Sprint-100" username, "Test123!" password
-  #  Then Merchant should see "Sprint-100" username as on Home Page
-  #Then Merchant go to gallery page
+    Then Merchant should see product process button
 
   @check-gallery-page-opening
   Scenario: Check gallery page opening

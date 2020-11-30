@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 
 import static lima.constants.Constants.GalleryPage.*;
 import static lima.constants.Constants.GalleryPage.pageHeaderName;
+import static lima.constants.Constants.HomePage.productProcess;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -226,6 +227,10 @@ public class GalleryPage extends BasePage {
     public void seeUploadImageButton() {
         waitUntilVisibleByLocator(imageUploadButton);
 
+    }
+
+    public void checkProductProcessButton() {
+        waitUntilVisibleByLocator(productProcess);
     }
 }
 

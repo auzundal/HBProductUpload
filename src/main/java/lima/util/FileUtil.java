@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class FileUtil {
 
-    public static String imagePath = System.getProperty("user.dir") + "/data/sample/imageUpload/";
+    public static String imagePath = System.getProperty("imagePath");
     public static String excelUploadPath = System.getProperty("excelUploadPath");
 
     public static List<String> getValidImageNames() {

@@ -10,7 +10,8 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    public void hoverMerchantName() throws InterruptedException {
+    public void hoverMerchantName() {
+        waitUntilClickableByLocator(merchantUsernameImage);
         hover(merchantUsernameImage);
     }
 

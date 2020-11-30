@@ -22,6 +22,7 @@ public class LoginPage extends BasePage {
     public void login(String username, String password) {
         clickAndWrite(usernameTextbox, username);
         clickAndWrite(passwordTextbox, password);
+        waitUntilClickableByLocator(loginButton);
         click(loginButton);
         takeScreenShot("login");
     }

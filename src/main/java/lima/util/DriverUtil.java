@@ -44,8 +44,8 @@ public class DriverUtil {
 
         ChromeOptions options = new ChromeOptions();
         // FirefoxOptions options = new FirefoxOptions();
-        options.addArguments("start-maximized");
-
+        //options.addArguments("start-maximized");
+        options.addArguments("--headless", "--window-size=2560x1440");
 
         if (remote) {
             try {

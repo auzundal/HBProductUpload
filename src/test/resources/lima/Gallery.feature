@@ -19,15 +19,15 @@ Feature: This feature contains gallery page's and its components' test
     And Merchant click gallery process button
     And Merchant should see title as "Görsel Galerisi" in Gallery Page
     And Merchant open image upload modal in gallery with images
-  # When Merchant upload files in Image Upload Page:
-  #   | valid_kedi.jpg |
-  #   | araba.jpg      |
-  #   | emir.jpg       |
-   # Then These images are available in Image Upload Page:
- #   | name           | message           |
- #   | valid_kedi.jpg | Yükleme başarılı! |
- #   | araba.jpg      | Yükleme başarılı! |
- #   | emir.jpg       | Yükleme başarılı! |
+    When Merchant upload files in Image Upload Page:
+      | valid_kedi.jpg |
+      | araba.jpg      |
+      | emir.jpg       |
+    Then These images are available in Image Upload Page:
+      | name           | message           |
+      | valid_kedi.jpg | Yükleme başarılı! |
+      | araba.jpg      | Yükleme başarılı! |
+      | emir.jpg       | Yükleme başarılı! |
 
 
   @single-image-upload-with-fail-image
@@ -36,12 +36,13 @@ Feature: This feature contains gallery page's and its components' test
     And Merchant click gallery process button
     And Merchant should see title as "Görsel Galerisi" in Gallery Page
     And Merchant open image upload modal in gallery with images
-   # When  Merchant upload files in Image Upload Page:
-   #   | FailResim.jpg |
-   # Then Merchant should see fail title
-  #  And These images are available in Image Upload Page:
-  #    | name          | message               |
-  #    | FailResim.jpg | Fotoğraf yüklenemedi. |
+    When  Merchant upload files in Image Upload Page:
+      | FailResim.jpg |
+    Then Merchant should see fail title
+
+    And These images are available in Image Upload Page:
+      | name          | message               |
+      | FailResim.jpg | Fotoğraf yüklenemedi. |
 
   @image-upload-invalid-files-upload-error-message
   Scenario: Upload an invalid file via upload my computer
@@ -49,10 +50,10 @@ Feature: This feature contains gallery page's and its components' test
     And Merchant click gallery process button
     And Merchant should see title as "Görsel Galerisi" in Gallery Page
     And Merchant open image upload modal in gallery with images
-  #  When  Merchant upload files in Image Upload Page:
-  #    | aspxDosyasi.rar |
-  #    | ExcelVar.rar    |
-  #  Then These files are invalid format toast error message
+    When  Merchant upload files in Image Upload Page:
+      | aspxDosyasi.rar |
+      | ExcelVar.rar    |
+    Then These files are invalid format toast error message
 
   @image-upload-success-with-URL
   Scenario: Upload an image success with URL
@@ -81,9 +82,9 @@ Feature: This feature contains gallery page's and its components' test
     Then Merchant should see title as "Görsel Galerisi" in Gallery Page
 
     When Merchant click upload image button in gallery page
-   # And  Merchant upload files in Image Upload Page:
-   #   | araba.jpg |
-   # Then Merchant check uploaded image message as "Yükleme başarılı!"
+    And  Merchant upload files in Image Upload Page:
+      | araba.jpg |
+    Then Merchant check uploaded image message as "Yükleme başarılı!"
 
   @single-image-upload-unsuccess
   Scenario: Incorrect format single image upload
@@ -93,11 +94,11 @@ Feature: This feature contains gallery page's and its components' test
     Then Merchant should see title as "Görsel Galerisi" in Gallery Page
 
     When Merchant click upload image button in gallery page
-  #  And  Merchant upload files in Excel Upload Page:
-  #    | record34.xlsx |
-  #  Then Merchant check incorrect format single image upload message as "Sadece JPG veya PNG formatında resim yükleyebilirsiniz."
+    And  Merchant upload files in Excel Upload Page:
+      | record34.xlsx |
+    Then Merchant check incorrect format single image upload message as "Sadece JPG veya PNG formatında resim yükleyebilirsiniz."
 
-  @search-image-verify
+  @search-image-verify @sanity
   Scenario: Search Image and verify
 
     When Merchant click product process button
@@ -105,13 +106,13 @@ Feature: This feature contains gallery page's and its components' test
     Then Merchant should see title as "Görsel Galerisi" in Gallery Page
 
     When Merchant click upload image button in gallery page
-  #  And  Merchant upload files in Image Upload Page:
-  #   | araba.jpg |
-  # And Merchant check uploaded image message as "Yükleme başarılı!"
-  # Then Merchant close upload image page
+    And  Merchant upload files in Image Upload Page:
+      | araba.jpg |
+    And Merchant check uploaded image message as "Yükleme başarılı!"
+    Then Merchant close upload image page
 
-  # When Merchant click and search image textbox as "araba.jpg"
-  # Then Merchant should see image name as "araba.jpg"
+    When Merchant click and search image textbox as "araba.jpg"
+    Then Merchant should see image name as "araba.jpg"
 
   @verify-delete-image-button
   Scenario: Verify Delete Image Button
@@ -121,14 +122,14 @@ Feature: This feature contains gallery page's and its components' test
     And Merchant should see title as "Görsel Galerisi" in Gallery Page
 
     When Merchant click upload image button in gallery page
- #  And  Merchant upload files in Image Upload Page:
- #    | araba.jpg |
- #  And Merchant check uploaded image message as "Yükleme başarılı!"
- #  Then Merchant close upload image page
+    And  Merchant upload files in Image Upload Page:
+      | araba.jpg |
+    And Merchant check uploaded image message as "Yükleme başarılı!"
+    Then Merchant close upload image page
 
- #  When Merchant click and search image textbox as "araba.jpg"
- #  And Merchant should see image name as "araba.jpg"
- #  Then Merchant delete uploaded image
+    When Merchant click and search image textbox as "araba.jpg"
+    And Merchant should see image name as "araba.jpg"
+    Then Merchant delete uploaded image
 
   @verify-delete-selected-image-button-from-gallery
   Scenario: Verify delete selected image button from gallery
@@ -138,15 +139,14 @@ Feature: This feature contains gallery page's and its components' test
     And Merchant should see title as "Görsel Galerisi" in Gallery Page
 
     When Merchant click upload image button in gallery page
-   # And  Merchant upload files in Image Upload Page:
-   #   | araba.jpg |
-   # And Merchant check uploaded image message as "Yükleme başarılı!"
-   # Then Merchant close upload image page
-#
-   # When Merchant click and search image textbox as "araba.jpg"
-   # And Merchant should see image name as "araba.jpg"
-   # Then Merchant delete selected image from gallery
+    And  Merchant upload files in Image Upload Page:
+      | araba.jpg |
+    And Merchant check uploaded image message as "Yükleme başarılı!"
+    Then Merchant close upload image page
 
+    When Merchant click and search image textbox as "araba.jpg"
+    And Merchant should see image name as "araba.jpg"
+    Then Merchant delete selected image from gallery
 
   @scroll-to-parameter-element
   Scenario: Scroll to end of the page with image name

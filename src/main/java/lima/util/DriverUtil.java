@@ -44,12 +44,13 @@ public class DriverUtil {
 
         ChromeOptions options = new ChromeOptions();
         // FirefoxOptions options = new FirefoxOptions();
-        //options.addArguments("start-maximized");
-        options.addArguments("--headless", "--window-size=2560x1440");
+        options.addArguments("start-maximized");
+      //  options.addArguments("--headless", "--window-size=2560x1440");
 
         if (remote) {
             try {
                 driver = new RemoteWebDriver(new URL("http://192.168.21.210:4444/wd/hub"), options);
+
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
